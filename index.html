@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Optimization -->
+  <title>최형민 Portfolio | AI & Web Automation Specialist</title>
+  <meta name="description" content="조선대학교 AI/SW학부 인공지능전공 최형민의 개인 CV 및 포트폴리오 사이트입니다. C++ 및 데이터 구조 기반 모터스포츠 차량 텔레메트리 데이터 분석과 데이터 엔지니어링에 열정을 쏟고 있습니다.">
+  <meta name="keywords" content="최형민, 포트폴리오, 조선대학교, 인공지능전공, 텔레메트리, ASC_TLMSYS, SCSS, ROKA_SCSS, 데이터 엔지니어, C++, 자료구조">
+  <meta name="author" content="최형민">
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="최형민 | AI & Web Automation Portfolio">
+  <meta property="og:description" content="무인 셀프 체크인 시스템(SCSS) v2.0 개발 및 인공지능공학 전공 포트폴리오">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://20233332choi.github.io/portfolio">
+  
+  <!-- Lucide Icons for clean aesthetic -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo" id="nav-logo">Hyeongmin<span class="gradient-text">.Choi</span></a>
+      
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#about" id="link-about">About</a></li>
+          <li><a href="#education" id="link-education">Education</a></li>
+          <li><a href="#skills" id="link-skills">Skills</a></li>
+          <li><a href="#projects" id="link-projects">Projects</a></li>
+          <li><a href="#experience" id="link-experience">Experience</a></li>
+          <li><a href="#cv" id="link-cv">CV</a></li>
+          <li><a href="#career" id="link-career">Career Goal</a></li>
+          <li><a href="#contact" id="link-contact">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="화면 테마 변경">
+        <i data-lucide="sun" id="theme-icon-sun" style="display: none;"></i>
+        <i data-lucide="moon" id="theme-icon-moon"></i>
+      </button>
+      
+      <div class="menu-toggle" id="mobile-menu-btn" aria-label="메뉴 열기">
+        <i data-lucide="menu" id="menu-icon-hamburger"></i>
+        <i data-lucide="x" id="menu-icon-close" style="display: none;"></i>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO SECTION
+       ========================================== -->
+  <section class="hero" id="hero">
+    <div class="container hero-content">
+      <p class="hero-subtitle fade-in-up">AI & Automation Architect</p>
+      <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s;">
+        Building Code to <br><span class="gradient-text">Automate the Real World</span>
+      </h1>
+      <p class="hero-desc fade-in-up" style="animation-delay: 0.2s;">
+        안녕하세요! 조선대학교 인공지능공학과 최형민입니다. <br>
+        실제 운영 중인 무인 체크인 시스템(SCSS) v2.0을 개발한 경험이 있으며, 
+        코드로 일상의 단절을 해소하고 가치를 극대화하는 것에 열정을 가지고 있습니다.
+      </p>
+      <div class="hero-btns fade-in-up" style="animation-delay: 0.3s;">
+        <a href="#projects" class="btn btn-primary" id="hero-btn-projects">
+          프로젝트 보기 <i data-lucide="arrow-right"></i>
+        </a>
+        <a href="./resume.pdf" class="btn btn-secondary" id="hero-btn-cv" download>
+          이력서 다운로드 (PDF) <i data-lucide="download"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="scroll-down">
+      <span>Scroll Down</span>
+      <div class="mouse">
+        <div class="wheel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       1. ABOUT ME SECTION
+       ========================================== -->
+  <section class="container" id="about">
+    <h2 class="section-title fade-in-up">About Me</h2>
+    <div class="about-grid glass-card fade-in-up">
+      <div class="about-img-container">
+        <div class="about-img-box">
+          <!-- Profile image (Loads profile.jpg, falls back to SVG on error) -->
+          <img src="assets/images/profile.jpg" alt="최형민 프로필 사진" onerror="this.style.display='none'; document.getElementById('fallback-avatar').style.display='block';">
+          <!-- Fallback SVG Avatar -->
+          <svg id="fallback-avatar" viewBox="0 0 100 100" class="tech-avatar" style="display: none; width:100%; height:100%; background: linear-gradient(135deg, hsl(250, 85%, 62%), hsl(195, 90%, 50%));">
+            <defs>
+              <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#8a2be2" stop-opacity="0.8"/>
+                <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.8"/>
+              </linearGradient>
+            </defs>
+            <circle cx="50" cy="35" r="18" fill="#fff" opacity="0.9"/>
+            <path d="M20 85 C20 65, 30 55, 50 55 C70 55, 80 65, 80 85" fill="#fff" opacity="0.9"/>
+            <text x="50" y="55" font-family="'Outfit', sans-serif" font-size="6" font-weight="bold" fill="url(#avatar-grad)" text-anchor="middle">&lt;CODE/&gt;</text>
+          </svg>
+        </div>
+      </div>
+      
+      <div class="about-details">
+        <p class="about-intro">
+          실제 군 복지시설(상승레스텔)의 비효율적 수동 관리 체계를 완전히 전환한 <strong>SCSS (Self Check in integrated SyStem)</strong>를 제작하여 실전 상용화까지 이끌어냈습니다. 대용량 예약 정보 가공 및 환경 격리를 위해 Docker 기반의 v2.0 아키텍처까지 전면 설계한 데이터 기반 자동화 개발 역량을 보유하고 있습니다.
+        </p>
+        
+        <div class="info-cards">
+          <div class="info-card">
+            <h4><i data-lucide="graduation-cap"></i> Major & Study</h4>
+            <p>조선대학교 AI/SW학부 인공지능전공<br>C++, 자료구조, 데이터 파이프라인 설계</p>
+          </div>
+          <div class="info-card">
+            <h4><i data-lucide="cpu"></i> Motorsport Telemetry</h4>
+            <p>시뮬레이터/차량 센서 데이터 실시간 소켓 수집 및 전처리, 시각화 분석</p>
+          </div>
+          <div class="info-card">
+            <h4><i data-lucide="target"></i> Future Goal</h4>
+            <p>실하드웨어 센서 데이터와 임베디드 통신을 기반으로 차량 거동을 최적화하는 레이스 데이터 엔지니어</p>
+          </div>
+          <div class="info-card">
+            <h4><i data-lucide="settings"></i> Tech Focus</h4>
+            <p>Docker 컨테이너 가상화, Python 기반 자동화 스크립팅, Flask API 구축</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       2. EDUCATION SECTION
+       ========================================== -->
+  <section class="container" id="education">
+    <h2 class="section-title fade-in-up">Education</h2>
+    <div class="timeline glass-card fade-in-up">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span>2023. 03 - 현재 재학 중 (재학 기간: 3년)</span>
+          <span>대한민국, 광주</span>
+        </div>
+        <h3 class="timeline-title">조선대학교 (Chosun University)</h3>
+        <p class="timeline-sub">AI/SW학부 인공지능전공 (Department of Artificial Intelligence) - 2학년</p>
+        <div class="timeline-desc">
+          <ul>
+            <li><strong>주요 수강 과목:</strong> 인공지능, C++, OSS(오픈소스 소프트웨어) 개론</li>
+            <li>C++ 프로그래밍 언어의 기초 지식과 오픈소스 소프트웨어 개발 생태계 이해 및 학습</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       3. SKILLS SECTION
+       ========================================== -->
+  <section class="container" id="skills">
+    <h2 class="section-title fade-in-up">Skills</h2>
+    <div class="skills-grid glass-card fade-in-up">
+      
+      <!-- Category 1: Programming Languages -->
+      <div class="skills-category">
+        <h3><i data-lucide="code-2"></i> Programming</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">C / C++</span>
+              <span class="skill-level-desc">Intermediate (75%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Python</span>
+              <span class="skill-level-desc">Intermediate (80%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Data Structure (자료구조)</span>
+              <span class="skill-level-desc">Intermediate (70%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="70%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Category 2: AI / ML -->
+      <div class="skills-category">
+        <h3><i data-lucide="brain"></i> AI / ML</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">PyTorch</span>
+              <span class="skill-level-desc">Basic (50%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="50%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Pandas / NumPy</span>
+              <span class="skill-level-desc">Intermediate (75%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">scikit-learn</span>
+              <span class="skill-level-desc">Basic (55%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="55%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 3: Web & Database -->
+      <div class="skills-category">
+        <h3><i data-lucide="globe"></i> Web & Database</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Flask / Waitress</span>
+              <span class="skill-level-desc">Intermediate (70%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="70%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">HTML5 / CSS3</span>
+              <span class="skill-level-desc">Intermediate (80%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="80%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">SQLite / MySQL</span>
+              <span class="skill-level-desc">Basic (55%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="55%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category 4: Tools & Infrastructure -->
+      <div class="skills-category">
+        <h3><i data-lucide="terminal"></i> Tools & Infra</h3>
+        <div class="skills-list">
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Docker / Compose</span>
+              <span class="skill-level-desc">Basic (60%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="60%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Selenium Crawler</span>
+              <span class="skill-level-desc">Intermediate (75%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="75%"></div>
+            </div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-info">
+              <span class="skill-name">Git / GitHub</span>
+              <span class="skill-level-desc">Intermediate (75%)</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress" data-level="75%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       4. PROJECTS SECTION
+       ========================================== -->
+  <section class="container" id="projects">
+    <h2 class="section-title fade-in-up">Projects</h2>
+    <div class="projects-grid">
+      
+      <!-- Project 1: ASC_TLMSYS (Motorsport Telemetry System) -->
+      <div class="project-card glass-card fade-in-up" id="project-asc-tlmsys">
+        <div class="project-img-container">
+          <div class="project-img-box">
+            <div class="project-visual-mockup" style="background: linear-gradient(135deg, hsl(220, 80%, 12%), hsl(225, 25%, 8%));">
+              <div class="mockup-header" style="color: hsl(200, 90%, 55%);">ASC_TLMSYS Console & Dash</div>
+              <div class="mockup-screen" style="color: hsl(200, 100%, 75%); border-color: hsla(200, 80%, 50%, 0.3); overflow-y: hidden; font-size: 0.78rem;">
+                <span style="color:#ffffff;">$ python app.py</span><br/>
+                <span style="color:#00B894;">INFO: Uvicorn running on http://127.0.0.1:8000</span><br/>
+                <span style="color:#00B894;">[Server] UDP 텔레메트리 서버 연결됨 (포트 8001)</span><br/>
+                <span>[API] POST /api/telemetry/start -> <span style="color:#00B894;">200 OK</span></span><br/>
+                <span>[F1 Pit Wall] GEAR: <span style="color:#fff; font-weight:bold;">3</span> | Speed: <span style="color:#00e676; font-weight:bold;">106 km/h</span> | RPM: <span style="color:#f1c40f;">1586</span></span><br/>
+                <span>[Physics] Tyre Core Temp: <span style="color:#ff7675;">81.7°C</span> | Brake Temp: <span style="color:#ff7675;">417°C</span></span><br/>
+                <span style="color:#20b2aa;">[Telemetry] Suspension load / G-force vector sync complete</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-details">
+          <span class="project-period">2026. 04 - 현재 (진행 중)</span>
+          <h3 class="project-title">ASC_TLMSYS</h3>
+          <p class="project-summary">시뮬레이션 및 실차 환경 통합형 실시간 F1 Pit Wall 스타일 텔레메트리 데이터 분석 플랫폼</p>
+          <p class="project-roles"><strong>본인 역할:</strong> 1인 독자 개발 (개인 프로젝트)</p>
+          
+          <ul class="project-features">
+            <li><strong>FastAPI & Uvicorn (포트 8000)</strong> 기반의 고성능 비동기 웹서버 및 데이터 파이프라인 아키텍처 설계</li>
+            <li><strong>UDP 소켓 통신 (포트 8001)</strong> 리스너를 구현하여 시뮬레이션 환경으로부터 실시간 물리 센서 패킷 저지연 수집</li>
+            <li><strong>F1 Pit Wall Control 대시보드</strong> 구현: 실시간 속도, RPM, 기어 변속(GEAR), 종/횡 G-Force 벡터 시각화</li>
+            <li><strong>상세 차량 기하학 모니터링:</strong> 타이어 Core 온도(81.7°C), I/M/O(내/중/외) 온도 분포, 브레이크 온도(417°C), 서스펜션 트래블/로드 분석</li>
+            <li><strong>차량 서브시스템 연동:</strong> ERS 배터리 충방전 상태 모니터링 및 DRS 잠금 해제/LOCKED 상태 실시간 트래킹</li>
+            <li><strong>하드웨어 연동 로드맵:</strong> 동아리 자작 자동차의 실시간 CAN 데이터 수집을 위한 센서 데이터 융합 프레임워크 확장 개발 진행 중</li>
+          </ul>
+          
+          <div class="project-tech">
+            <span class="tech-tag">C++</span>
+            <span class="tech-tag">Socket Programming</span>
+            <span class="tech-tag">Data Structures</span>
+            <span class="tech-tag">Telemetry API</span>
+            <span class="tech-tag">Python (Analytics)</span>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/20233332choi/ASC_TLMTSYS" class="btn btn-primary" id="proj-link-asc-git" target="_blank">
+              <i data-lucide="github"></i> Repository
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2: SCSS v2.0 (Unmanned Check-in System) -->
+      <div class="project-card glass-card fade-in-up" id="project-scss">
+        <div class="project-img-container">
+          <div class="project-img-box">
+            <!-- Simulated system UI screen -->
+            <div class="project-visual-mockup" style="background: linear-gradient(135deg, hsl(200, 20%, 10%), hsl(225, 25%, 8%));">
+              <div class="mockup-header" style="color: hsl(200, 40%, 65%);">Docker Container: scss logs</div>
+              <div class="mockup-screen" style="overflow-y: hidden; font-size: 0.74rem; color: hsl(210, 15%, 80%);">
+                <span style="color:#7f8c8d;">Attaching to scss</span><br/>
+                <span style="color:#00B894;">scss | INFO 로깅 시스템 초기화 완료</span><br/>
+                <span style="color:#00B894;">scss | INFO Scheduler started</span><br/>
+                <span>scss | DEBUG 절대 경로 변환: templates/객실리스트.xlsx -> /app/templates/...</span><br/>
+                <span>scss | DEBUG Next wakeup is due at 14:50:00+09:00</span><br/>
+                <span style="color:#00B894;">scss | INFO Serving on http://0.0.0.0:80</span><br/>
+                <span style="color:#00e676;">[Kiosk Status] ONLINE (로컬 키오스크 가동)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="project-details">
+          <span class="project-period">2025. 01 - 2026. 04 (실제 상시 운용 중)</span>
+          <h3 class="project-title">SCSS (Self Check-in Integrated System)</h3>
+          <p class="project-summary">군 복지시설(상승레스텔)의 무인 프런트 및 통합 객실 관리 자동화 시스템</p>
+          <p class="project-roles"><strong>본인 역할:</strong> 1인 총괄 개발자 / 아키텍트 (군 시절 일병 독자 개발)</p>
+          
+          <ul class="project-features">
+            <li>일병 시절, 독학(파이썬/네트워크 구조)과 AI 에이전트를 적극 활용하여 혼자서 전체 시스템 설계 및 실서버 기동</li>
+            <li><strong>Window os 기반 키오스크 웹 인터페이스 구축:</strong> 오프라인 프런트 데스크에 실제 키오스크 시스템을 도입하여 고객이 직접 조회/입력하는 무인화 체계 성립</li>
+            <li>육군복지포털(휴드림) 예약망 예약번호 입력을 통한 **실시간 호실 매칭 및 도어락 비밀번호 즉각 조회** 로직 완성</li>
+            <li><strong>Pandas & APScheduler 스케줄러:</strong> 매일 14:50 복지 포털 데이터 크롤링 파일을 자동 분석 및 업데이트(절대경로 자동변환 포함)</li>
+            <li>청소리스트 PDF 자동 생성 및 네트워크 프린터 인쇄 자동화 구현</li>
+            <li>Docker 컨테이너화 및 docker-compose 배포를 통한 24시간 백그라운드 구동 보장</li>
+          </ul>
+          
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">Selenium</span>
+            <span class="tech-tag">APScheduler</span>
+          </div>
+          
+          <div class="project-links">
+            <a href="https://github.com/20233332choi/ROKA_SCSS" class="btn btn-secondary" id="proj-link-scss-git" target="_blank">
+              <i data-lucide="github"></i> Repository
+            </a>
+            <a href="./manual.html" class="btn btn-primary" id="proj-link-scss-manual" target="_blank">
+              <i data-lucide="file-text"></i> 매뉴얼 보기
+            </a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==========================================
+       5. EXPERIENCE SECTION
+       ========================================== -->
+  <section class="container" id="experience">
+    <h2 class="section-title fade-in-up">Experience</h2>
+    <div class="timeline glass-card fade-in-up">
+      
+      <!-- Experience 1 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span>2025. 01 - 2026. 04</span>
+          <span>육군 7군단 상승레스텔</span>
+        </div>
+        <h3 class="timeline-title">무인 셀프 체크인 자동화 시스템 (SCSS) 독자 개발 및 운용</h3>
+        <p class="timeline-sub">IT 자동화 프로젝트 1인 개발 (군 시절 일병 복무 중)</p>
+        <div class="timeline-desc">
+          <ul>
+            <li><strong>AI 에이전트 협업 설계:</strong> 군 복무 시절 일병의 신분으로 AI 에이전트를 조력자로 활용하여 시스템의 설계 단계부터 배포까지 혼자서 성공적으로 구현</li>
+            <li><strong>기초 지식 독학:</strong> 레거시 관리 환경의 단절을 타파하고자 파이썬 및 웹/소켓 네트워크 구조 기초를 맨땅에서 치열하게 독학하여 실전에 대입</li>
+            <li><strong>상용 가동 실적:</strong> 프런트 문자 발송 자동화 및 객실 매치 알고리즘을 융합하여 24시간 가동 가능한 무인 체크인 시스템을 실제 복지시설 현업에 성공적으로 가동 및 실전 검증</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Experience 2 -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-meta">
+          <span>2026. 03 - 현재</span>
+          <span>대자연(대학생 자동차 연구동아리)</span>
+        </div>
+        <h3 class="timeline-title">자작자동차 하드웨어-소프트웨어 융합 및 텔레메트리 설계</h3>
+        <p class="timeline-sub">임베디드 시스템 학습 및 데이터 수집·분석 인프라 설계자</p>
+        <div class="timeline-desc">
+          <ul>
+            <li><strong>기계-소프트웨어 융합 도전:</strong> 기계공학적 현장 차량 거동 및 임베디드 시스템 구조를 깊이 이해하고, 인공지능 전공의 소프트웨어 및 데이터 최적화 요소를 주입하기 위해 자작자동차 동아리 합류</li>
+            <li><strong>인프라 불완전성 해소 주도:</strong> 대회 우승 수준의 뛰어난 하드웨어 기계 설계 대비, 실시간 데이터 수집 및 분석 시스템의 불안정성을 인지하고 C++/자료구조 기반의 텔레메트리 파이프라인 구축 기획</li>
+            <li><strong>실시간 패킷 수집 최적화:</strong> 시뮬레이터(아세토 코르사) 기반의 실시간 물리 센서 패킷 파싱 모듈 개발을 통해 데이터 전처리 안정성을 확보하고, 실제 자작 차량의 물리 데이터 수집 연동 설계 추진</li>
+            <li><strong>오픈소스 협업 전파:</strong> 개발된 수집 모듈의 깃허브 오픈소스 공유 및 동아리원 간의 협업 표준을 수립하기 위해 오픈소스(OSS) 협업 가이드 제공</li>
+          </ul>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==========================================
+       6. CV / RESUME SECTION
+       ========================================== -->
+  <section class="container cv-section" id="cv">
+    <h2 class="section-title fade-in-up">CV / Resume</h2>
+    <div class="cv-card glass-card fade-in-up">
+      <i data-lucide="file-text" style="width: 60px; height: 60px; color: var(--clr-primary); margin-bottom: 0.5rem;"></i>
+      <h3>최형민 이력서 (Resume)</h3>
+      <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
+        인공지능공학과 학부 생활과 군 복지시설 시스템 자동화 현업 개발자로서의 경험을 정리한 통합 영문 이력서 파일입니다.
+      </p>
+      
+      <div class="cv-warning">
+        <i data-lucide="shield-check" style="width:16px; height:16px;"></i>
+        <span>이력서 PDF에는 개인정보 보호를 위해 민감한 식별 정보(주소, 주민번호 등)가 배제되어 있습니다.</span>
+      </div>
+      
+      <a href="./resume.pdf" class="btn btn-primary" id="cv-download-link" download>
+        <i data-lucide="download"></i> Download My Resume
+      </a>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       7. CAREER GOAL SECTION
+       ========================================== -->
+  <section class="container" id="career">
+    <h2 class="section-title fade-in-up">Career Goal / Future Plan</h2>
+    <div class="goals-grid">
+      
+      <div class="goal-card glass-card fade-in-up">
+        <span class="goal-icon"><i data-lucide="gauge"></i></span>
+        <h3>Motorsport Telemetry Engineer</h3>
+        <p>레이싱 카의 실시간 물리 데이터(속도, RPM, G-Force 등) 수집 인프라를 구축하고, 전략 수립과 성능 분석의 핵심이 되는 고효율 텔레메트리 파이프라인 개발자를 지향합니다.</p>
+      </div>
+      
+      <div class="goal-card glass-card fade-in-up">
+        <span class="goal-icon"><i data-lucide="database"></i></span>
+        <h3>Race Data Engineer</h3>
+        <p>차량에서 발생하는 실시간 센서 패킷과 CAN 데이터를 저지연(Low-Latency)으로 수집·가공하고, 레이스 전략 및 머신 세팅 최적화의 핵심 근거를 제시하는 레이스 데이터 엔지니어를 지향합니다.</p>
+      </div>
+      
+      <div class="goal-card glass-card fade-in-up">
+        <span class="goal-icon"><i data-lucide="cpu"></i></span>
+        <h3>Hardware-Software System Integrator</h3>
+        <p>자작자동차 동아리 하드웨어 설계 협업과 연계하여, 실제 차량 센서 데이터(CAN, 임베디드 디바이스)를 직접 로드하고 소프트웨어 분석 모듈에 연결하는 실천형 시스템 융합 엔지니어로 활약하고자 합니다.</p>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==========================================
+       8. CONTACT SECTION
+       ========================================== -->
+  <section class="container" id="contact">
+    <h2 class="section-title fade-in-up">Contact</h2>
+    <div class="contact-layout">
+      
+      <div class="contact-info fade-in-up">
+        <h3>Let's build something together!</h3>
+        <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
+          궁금한 점이 있으시거나 웹 자동화, AI 솔루션 프로젝트 협업을 원하신다면 언제든지 편하게 연락해 주세요.
+        </p>
+        
+        <div class="contact-items">
+          <div class="contact-item">
+            <div class="contact-icon"><i data-lucide="mail"></i></div>
+            <div class="contact-details">
+              <h4>Email</h4>
+              <p><a href="mailto:chm62@naver.com" class="contact-link" id="contact-mail">chm62@naver.com</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i data-lucide="github"></i></div>
+            <div class="contact-details">
+              <h4>GitHub</h4>
+              <p><a href="https://github.com/20233332choi" class="contact-link" id="contact-github" target="_blank">github.com/20233332choi</a></p>
+            </div>
+          </div>
+          
+          <div class="contact-item">
+            <div class="contact-icon"><i data-lucide="external-link"></i></div>
+            <div class="contact-details">
+              <h4>Blog / Notion</h4>
+              <p><span style="color: var(--text-muted);">준비 중 (Optional)</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Premium interactive fake form for beautiful look -->
+      <div class="contact-form-card glass-card fade-in-up">
+        <form id="contact-form" onsubmit="event.preventDefault(); alert('포트폴리오 데모 폼입니다. 실제 연락은 이메일로 부탁드립니다!');">
+          <div class="form-group">
+            <label for="form-name">Name</label>
+            <input type="text" id="form-name" class="form-control" placeholder="성함 또는 기업명을 입력해 주세요." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="form-email">Email</label>
+            <input type="email" id="form-email" class="form-control" placeholder="답변받으실 이메일 주소를 입력해 주세요." required>
+          </div>
+          
+          <div class="form-group">
+            <label for="form-message">Message</label>
+            <textarea id="form-message" class="form-control" rows="5" placeholder="메시지 내용을 입력해 주세요." required></textarea>
+          </div>
+          
+          <button type="submit" class="btn btn-primary" id="form-submit-btn" style="width: 100%; justify-content: center;">
+            <i data-lucide="send"></i> 메시지 전송
+          </button>
+        </form>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Hyeongmin<span class="gradient-text">.Choi</span></div>
+      <p>&copy; 2026 최형민. All rights reserved.</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-muted);">
+        Powered by Google DeepMind Antigravity AI
+      </p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

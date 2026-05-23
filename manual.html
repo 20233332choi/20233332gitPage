@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- SEO Optimization -->
+  <title>SCSS v2.0 - 통합 객실 관리 시스템 매뉴얼 | 최형민 포트폴리오</title>
+  <meta name="description" content="조선대학교 인공지능공학과 최형민이 개발한 무인 객실 셀프 체크인 시스템(SCSS) v2.0의 실제 운용 및 배포 매뉴얼입니다.">
+  <meta name="author" content="최형민">
+  
+  <!-- Google Fonts & Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  
+  <style>
+    /* ==========================================
+       MANUAL EXCLUSIVE STYLES
+       ========================================== */
+    :root {
+      --sidebar-width: 280px;
+    }
+
+    body {
+      padding-top: 80px; /* Navbar space */
+    }
+
+    /* Layout Structure */
+    .manual-layout {
+      display: flex;
+      gap: 2.5rem;
+      position: relative;
+      align-items: flex-start;
+      margin-bottom: 5rem;
+    }
+
+    /* Sidebar Sticky Navigation (TOC) */
+    .manual-sidebar {
+      width: var(--sidebar-width);
+      position: sticky;
+      top: 100px;
+      height: calc(100vh - 140px);
+      overflow-y: auto;
+      padding-right: 1rem;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border-color) transparent;
+      flex-shrink: 0;
+    }
+
+    .manual-sidebar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .manual-sidebar::-webkit-scrollbar-thumb {
+      background-color: var(--border-color);
+      border-radius: 4px;
+    }
+
+    .toc-title {
+      font-size: 1.1rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--border-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .toc-link {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      display: block;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .toc-link:hover {
+      color: var(--clr-accent);
+      background-color: var(--border-color);
+      padding-left: 1.1rem;
+    }
+
+    .toc-link.active {
+      color: var(--clr-primary);
+      background-color: hsla(var(--hue-accent), 85%, 62%, 0.08);
+      font-weight: 600;
+      border-left-color: var(--clr-primary);
+    }
+
+    /* Main Content Area */
+    .manual-content {
+      flex-grow: 1;
+      max-width: calc(100% - var(--sidebar-width) - 2.5rem);
+    }
+
+    .manual-section {
+      margin-bottom: 4.5rem;
+      scroll-margin-top: 100px;
+    }
+
+    /* Cover Styling */
+    .manual-cover {
+      text-align: center;
+      padding: 4rem 2rem;
+      margin-bottom: 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .manual-cover .badge {
+      display: inline-block;
+      background: var(--clr-grad);
+      color: var(--text-inverse);
+      padding: 0.35rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .manual-cover h1 {
+      font-size: 2.8rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.2;
+    }
+
+    .manual-cover .subtitle {
+      font-size: 1.2rem;
+      color: var(--clr-accent);
+      font-weight: 500;
+      margin-bottom: 2.5rem;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.5rem;
+      max-width: 700px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border-color);
+      padding-top: 2rem;
+    }
+
+    .meta-item h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+
+    .meta-item p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Typographic Enhancements inside Manual */
+    .manual-content h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 0.6rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .manual-content h3 {
+      font-size: 1.25rem;
+      margin-top: 1.8rem;
+      margin-bottom: 0.8rem;
+      color: var(--clr-accent);
+    }
+
+    .manual-content p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.7;
+    }
+
+    .manual-content strong {
+      color: var(--text-main);
+    }
+
+    /* Table Design */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 1.5rem 0;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .manual-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+
+    .manual-table th, .manual-table td {
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .manual-table th {
+      background-color: var(--bg-surface-opaque);
+      color: var(--text-main);
+      font-weight: 700;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .manual-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .manual-table tbody tr:hover {
+      background-color: hsla(0, 0%, 50%, 0.03);
+    }
+
+    .diff-v1 {
+      color: hsl(0, 85%, 65%);
+      font-weight: 600;
+    }
+
+    .diff-v2 {
+      color: hsl(150, 80%, 45%);
+      font-weight: 600;
+    }
+
+    /* Alerts and Notes */
+    .alert-box {
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem;
+      margin: 1.5rem 0;
+      border-left: 4px solid;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .alert-box.info {
+      background-color: hsla(200, 85%, 55%, 0.08);
+      border-color: hsl(200, 85%, 55%);
+      color: var(--text-main);
+    }
+
+    .alert-box.warning {
+      background-color: hsla(45, 90%, 50%, 0.08);
+      border-color: hsl(45, 90%, 50%);
+      color: var(--text-main);
+    }
+
+    .alert-box i {
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+    }
+    
+    .alert-box.info i {
+      color: hsl(200, 85%, 55%);
+    }
+
+    .alert-box.warning i {
+      color: hsl(45, 90%, 50%);
+    }
+
+    /* Code Blocks */
+    pre {
+      background: hsl(225, 25%, 6%);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      color: hsl(210, 15%, 85%);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    code {
+      font-family: 'Consolas', monospace;
+      background-color: hsla(0, 0%, 50%, 0.12);
+      color: var(--clr-primary);
+      padding: 0.2rem 0.4rem;
+      border-radius: 6px;
+      font-size: 0.9em;
+    }
+
+    pre code {
+      background-color: transparent;
+      color: inherit;
+      padding: 0;
+      border-radius: 0;
+      font-size: inherit;
+    }
+
+    /* Lists inside manual */
+    .manual-content ul, .manual-content ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1.2rem;
+      color: var(--text-muted);
+      font-size: 0.98rem;
+    }
+
+    .manual-content li {
+      margin-bottom: 0.5rem;
+    }
+
+    .manual-content ul {
+      list-style-type: square;
+    }
+
+    /* Checkbox list (Daily checklist) */
+    .checklist-table td input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--clr-primary);
+      cursor: pointer;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .manual-sidebar {
+        display: none; /* Hide TOC sidebar on tablets and mobile */
+      }
+      .manual-content {
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .manual-cover h1 {
+        font-size: 2.2rem;
+      }
+      .project-links {
+        flex-direction: column;
+      }
+      .navbar .container {
+        padding: 0 1rem;
+      }
+    }
+
+    /* Header Nav customization */
+    .navbar .btn-home {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .navbar .btn-home:hover {
+      background-color: var(--border-color);
+      color: var(--clr-accent);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================
+       NAVIGATION BAR
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="./index.html" class="logo">Hyeongmin<span class="gradient-text">.Choi</span></a>
+      
+      <div style="display: flex; gap: 1rem; align-items: center;">
+        <a href="./index.html" class="btn-home">
+          <i data-lucide="home" style="width: 16px; height: 16px;"></i> Portfolio
+        </a>
+        
+        <button class="theme-toggle-btn" id="theme-toggle" aria-label="화면 테마 변경">
+          <i data-lucide="sun" id="theme-icon-sun" style="display: none;"></i>
+          <i data-lucide="moon" id="theme-icon-moon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT CONTAINER
+       ========================================== -->
+  <main class="container">
+    <div class="manual-layout">
+      
+      <!-- Sticky Sidebar (TOC) -->
+      <aside class="manual-sidebar glass-card">
+        <h3 class="toc-title">목차</h3>
+        <ul class="toc-list">
+          <li><a href="#comparison" class="toc-link">0. 버전 비교 (v1.1 vs v2.0)</a></li>
+          <li><a href="#intro" class="toc-link">1. 시스템 개요 및 배경</a></li>
+          <li><a href="#architecture" class="toc-link">2. 시스템 아키텍처</a></li>
+          <li><a href="#admin" class="toc-link">3. 관리자 모듈 주요 기능</a></li>
+          <li><a href="#setup" class="toc-link">4. 설치 및 실행 가이드</a></li>
+          <li><a href="#update" class="toc-link">5. 업데이트 및 유지보수</a></li>
+          <li><a href="#troubleshoot" class="toc-link">6. 장애 대응 시나리오</a></li>
+          <li><a href="#reinstall" class="toc-link">7. 시스템 재설치 절차</a></li>
+          <li><a href="#expansion" class="toc-link">8. 확장 개발 가이드</a></li>
+          <li><a href="#directory" class="toc-link">9. 디렉터리 트리</a></li>
+          <li><a href="#checklist" class="toc-link">10. 일일 운영 체크리스트</a></li>
+          <li><a href="#rules" class="toc-link">11. 데이터 변경 주의사항</a></li>
+        </ul>
+      </aside>
+
+      <!-- Content Area -->
+      <div class="manual-content">
+        
+        <!-- Cover Page -->
+        <div class="manual-cover glass-card">
+          <span class="badge">PRODUCTION OPERATIONAL</span>
+          <h1>SCSS 통합 운영 및 배포 매뉴얼</h1>
+          <p class="subtitle">Self Check-in Integrated System (SCSS) v2.0</p>
+          
+          <div class="meta-grid">
+            <div class="meta-item">
+              <h4>최종 업데이트</h4>
+              <p>2026. 04. 05</p>
+            </div>
+            <div class="meta-item">
+              <h4>총괄 개발자</h4>
+              <p>최형민 (당시 일병)</p>
+            </div>
+            <div class="meta-item">
+              <h4>기술 조력자</h4>
+              <p>AI 에이전트 (Agent AI)</p>
+            </div>
+            <div class="meta-item">
+              <h4>운영 환경</h4>
+              <p>Docker Container / Windows 11</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 0. Version Comparison -->
+        <section id="comparison" class="manual-section glass-card">
+          <h2><i data-lucide="git-compare"></i> 0. 버전 비교 (v1.1 vs v2.0)</h2>
+          <p>SCSS v2.0은 기존 물리 서버 의존성과 수동 엑셀 동기화 방식을 전면 개정하여, <strong>Docker 기반 아키텍처</strong>와 <strong>관리자 대시보드 자동화</strong>를 실현한 대규모 성능 업데이트 버전입니다.</p>
+          
+          <div class="table-container">
+            <table class="manual-table">
+              <thead>
+                <tr>
+                  <th>구분</th>
+                  <th>v1.1 (기존 수동형)</th>
+                  <th>v2.0 (현행 자동화형)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>배포 방식</strong></td>
+                  <td class="diff-v1">물리 PC 직접 설치 (Python 버전 및 라이브러리 의존성 발생)</td>
+                  <td class="diff-v2">Docker 컨테이너 기반 배포 (환경 독립성 및 원클릭 복구)</td>
+                </tr>
+                <tr>
+                  <td><strong>실행 및 상주</strong></td>
+                  <td class="diff-v1"><code>start.bat</code> 단축 실행 (터미널 창 상시 상주 필요)</td>
+                  <td class="diff-v2"><code>docker-compose</code> 백그라운드 상시 구동 및 자동 재시작 보장</td>
+                </tr>
+                <tr>
+                  <td><strong>데이터 갱신</strong></td>
+                  <td class="diff-v1">Google Drive Sync 연동 후 수동 엑셀 파일 교체 작업 필요</td>
+                  <td class="diff-v2"><code>updater.py</code>를 통한 웰페어 포털 실시간 자동 크롤링 및 적재</td>
+                </tr>
+                <tr>
+                  <td><strong>운영 관리자 기능</strong></td>
+                  <td class="diff-v1">관리 기능 부재 (로그 파일 직접 추적 필요)</td>
+                  <td class="diff-v2">실시간 대시보드 제공 (객실 현황 모니터링, 수동 체크인, PW 초기화)</td>
+                </tr>
+                <tr>
+                  <td><strong>유지보수</strong></td>
+                  <td class="diff-v1">장애 시 수동 코드 복사 및 라이브러리 재설치 발생</td>
+                  <td class="diff-v2">Git 원격 연동 및 <code>auto_update.bat</code>를 통한 자동 빌드 파이프라인</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 1. Introduction -->
+        <section id="intro" class="manual-section glass-card">
+          <h2><i data-lucide="help-circle"></i> 1. 시스템 개요 및 개발 배경</h2>
+          <h3>1.1 개발 취지</h3>
+          <p>군 복지시설(상승레스텔)의 프런트 데스크 관리와 온라인 복지포털 간의 실시간 데이터 연동이 부재하여, 기존에는 관리병이 예약 내역을 대조한 후 손님들에게 도어락 비밀번호를 수작업으로 조회하여 문자를 발송하는 비효율적인 프로세스로 운영되었습니다. 이는 업무 과부하와 비밀번호 오타 전송 등의 운영 오류를 유발했습니다.</p>
+          <p>SCSS는 <strong>예약고객이 프런트 키오스크나 모바일에서 직접 본인의 예약번호를 통해 객실 호수와 도어락 비밀번호를 실시간 조회 및 확인</strong>할 수 있는 무인 자동화 체계를 구축하여, 24시간 무인 프런트 대응을 원활하게 실현하고 행정 소요를 극적으로 단축했습니다.</p>
+          
+          <h3>1.2 실전 투입형 애자일 개발 (Agile Development)</h3>
+          <div class="alert-box info">
+            <i data-lucide="info"></i>
+            <div>
+              <strong>실전 운영 기반의 반복 수정:</strong> 본 시스템은 가상 테스트에 머무르지 않고, 개발 초기 단계의 <strong>프로토타입을 실제 군 복지시설 현업에 직접 배치</strong>하여 매일 입·퇴실하는 손님들과 시설 관리병의 실시간 피드백을 수용하며 버그 패치와 기능 개선을 반복하여 완성도를 끌어올린 "검증된 상용 솔루션"입니다.
+            </div>
+          </div>
+
+          <h3>1.3 1인 개발 비하인드 스토리 (개발자 에세이)</h3>
+          <p>본 프로젝트는 개발 당시 <strong>일병</strong>이었던 최형민 개발자가 군 복무 중 복지시설의 고질적인 수동 행정 프로세스를 개선하고자 시작한 <strong>1인 자동화 프로젝트</strong>입니다. 비전공자 및 인프라의 제약이라는 벽을 극복하기 위해, 복무 중 <strong>AI 에이전트(Agent AI)를 페어 프로그래밍 파트너이자 기술 멘토로 삼아</strong> 긴밀히 조력하며 시스템의 전체 아키텍처를 구상하였습니다.</p>
+          <p>프로그램 구축에 필요한 핵심적인 기반 지식을 쌓기 위해 일과 후와 개인 정비 시간을 활용하여 <strong>파이썬(Python) 프로그래밍 언어의 기본기와 소켓 및 웹 기반의 네트워크 구조를 치열하게 독학</strong>하였습니다. 이러한 자기주도적 학습과 AI의 협업을 통해 설계된 SCSS v1.0은 실제 운용 환경에 배치된 후 수많은 실무 피드백을 거쳤으며, Docker 가상화 기술을 주입한 v2.0에 이르기까지 성공적으로 고도화되어 실질적인 국방 행정 자동화 혁신을 달성하였습니다.</p>
+        </section>
+
+        <!-- 2. System Architecture -->
+        <section id="architecture" class="manual-section glass-card">
+          <h2><i data-lucide="layers"></i> 2. 시스템 아키텍처</h2>
+          <p>SCSS는 가볍고 효율적인 Python Flask 프레임워크와 OS 환경 격리를 위한 Docker 컨테이너 기술을 융합하여 상시 구동 안정성을 극대화했습니다.</p>
+          
+          <div class="table-container">
+            <table class="manual-table">
+              <thead>
+                <tr>
+                  <th>구성 요소</th>
+                  <th>핵심 기술 스택</th>
+                  <th>역할 및 상세 설명</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Flask Web App</strong></td>
+                  <td>Flask, Waitress WSGI</td>
+                  <td>사용자 체크인 요청 처리 및 도어락 비밀번호 데이터베이스 매핑/조회 API 서버 구동.</td>
+                </tr>
+                <tr>
+                  <td><strong>Admin Module</strong></td>
+                  <td>HTML5, JavaScript, CSS3</td>
+                  <td>실시간 투숙 현황 파악, 수동 체크인 기능 및 객실 비밀번호 동적 반영 대시보드.</td>
+                </tr>
+                <tr>
+                  <td><strong>Selenium Crawler</strong></td>
+                  <td>Selenium, Chrome Headless</td>
+                  <td>복지포털 사이트에 자동 로그인하여 최신 예약 데이터를 안전하게 다운로드 및 정제.</td>
+                </tr>
+                <tr>
+                  <td><strong>APScheduler</strong></td>
+                  <td>APScheduler (cron)</td>
+                  <td>매일 14:50 최신 데이터 갱신 스케줄러 실행 및 09:00 청소목록 자동 출력 트리거링.</td>
+                </tr>
+                <tr>
+                  <td><strong>Docker Engine</strong></td>
+                  <td>Docker Compose</td>
+                  <td>개별 OS 종속성 제거 및 컨테이너 내부 네트워크망 보안 격리 유지.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p>모든 데이터 트래픽은 보안 정책상 지정된 <strong>내부 포트 80(HTTP)</strong>을 통해 통신하며, 관리 서비스는 로컬 프런트 단말기 및 지정된 내부 인프라 단말기로 접근이 제한되어 있습니다.</p>
+        </section>
+
+        <!-- 3. Admin Module Features -->
+        <section id="admin" class="manual-section glass-card">
+          <h2><i data-lucide="shield-alert"></i> 3. 관리자 모듈 주요 기능</h2>
+          
+          <h3>3.1 실시간 투숙 현황판 (`/admin/status`)</h3>
+          <ul>
+            <li><strong>시각화 관리:</strong> 각 객실의 상태를 색상 코드(체크인 전: 오렌지, 입실 완료: 그린, 퇴실 대기: 그레이)로 시각화하여 프런트 데스크 상황 한눈에 조망.</li>
+            <li><strong>수동 오버라이드:</strong> 연세가 많으시거나 단말기 조작이 어려운 고객이 내방 시, 관리자가 현황판에서 클릭 한 번으로 체크인을 대리 강제 처리할 수 있는 오버라이드 기능 구현.</li>
+            <li><strong>자동 로그 기록:</strong> 모든 체크인 요청 시각, 예약번호, 객실 호수는 즉시 암호화 처리 후 <code>data/checkin_log.csv</code> 파일에 영구 기록되어 감사 데이터로 보관.</li>
+          </ul>
+
+          <h3>3.2 객실 비밀번호 동적 관리 (`/admin/ppc`)</h3>
+          <ul>
+            <li><strong>난수 생성 알고리즘:</strong> 중복 및 연속된 숫자를 원천 배제한 높은 보안성의 4자리 난수 도어락 비밀번호 생성.</li>
+            <li><strong>적용 대기 상태 (Pending):</strong> 즉시 비밀번호가 변경되어 고객이 구 비밀번호로 출입을 못 하는 사고를 예방하기 위해, 난수를 미리 임시 엑셀(<code>pending/</code>)에 저장하고 관리병이 직접 도어락 물리 키에 비번을 입력했음을 승인(Cover)한 시점에 실서비스에 반영(Live)하는 안전 프로세스 도입.</li>
+          </ul>
+        </section>
+
+        <!-- 4. Docker Setup & Guide -->
+        <section id="setup" class="manual-section glass-card">
+          <h2><i data-lucide="terminal"></i> 4. 설치 및 실행 가이드 (Docker 기반)</h2>
+          <p>프로젝트를 신규 인프라에 배포하거나 로컬 테스트 환경을 구축하기 위한 빌드 프로세스입니다.</p>
+          
+          <h3>4.1 환경 설정 (.env)</h3>
+          <p>루트 폴더에 <code>.env</code> 파일을 생성하고 아래와 같이 관리자 자격증명 및 크롤링 계정을 주입합니다.</p>
+          <pre><code># SCSS System Environment Configuration
+ADMIN_PASSWORD=change_this_to_secure_password
+WELFARE_PORTAL_ID=welfare_account_id
+WELFARE_PORTAL_PW=welfare_account_secure_password
+PORT=80</code></pre>
+
+          <h3>4.2 서비스 빌드 및 실행</h3>
+          <p>컨테이너 백그라운드 상주를 보장하는 구동 명령어입니다.</p>
+          <pre><code># 1. 원격 리포지토리로부터 코드 클론
+git clone https://github.com/20233332choi/ROKA_SCSS.git
+cd ROKA_SCSS
+
+# 2. Docker compose 백그라운드 빌드 및 실행
+docker-compose up -d --build
+
+# 3. 서비스 프로세스 가동 상태 점검
+docker-compose ps</code></pre>
+          
+          <div class="alert-box warning">
+            <i data-lucide="alert-triangle"></i>
+            <div>
+              <strong>배포 주의사항:</strong> 외부 인터넷망에 포트가 바로 노출되지 않도록 서버 OS 레벨의 방화벽(UFW 등)에서 내부망 고정 IP 대역 외의 접속 요청은 물리적으로 Drop 처리하십시오.
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. Update Workflow -->
+        <section id="update" class="manual-section glass-card">
+          <h2><i data-lucide="refresh-cw"></i> 5. 원격 자동 업데이트 및 유지보수</h2>
+          
+          <h3>5.1 자동 업데이트 시스템</h3>
+          <p>실제 운용 환경에서는 수동 터미널 제어 없이 최신 릴리즈 패치를 안전하게 반영하기 위해 스크립트 기반의 핫 릴리즈 프로세스를 지원합니다. <code>auto_update.bat</code>(윈도우) 또는 <code>auto_update.sh</code>(리눅스) 실행 시 작동하는 파이프라인 프로세스는 다음과 같습니다.</p>
+          
+          <pre><code>@echo off
+echo [SCSS Update Pipeline Starting...]
+cd /d %~dp0
+git fetch origin main
+git reset --hard origin/main
+docker-compose down
+docker-compose up -d --build
+echo [SCSS Update Successfully Finished!]
+pause</code></pre>
+
+          <h3>5.2 정기 데이터 백업 대상</h3>
+          <p>시스템 문제 발생 시 데이터를 원상복구하기 위한 일일 백업 대상 경로입니다.</p>
+          <ul>
+            <li><code>data/checkin_log.csv</code>: 누적 체크인 실적 및 일자별 출입 내역</li>
+            <li><code>templates/객실 도어락 비밀번호.xlsm</code>: 호실별 물리 설정 비밀번호 원본 데이터</li>
+          </ul>
+        </section>
+
+        <!-- 6. Troubleshooting -->
+        <section id="troubleshoot" class="manual-section glass-card">
+          <h2><i data-lucide="life-buoy"></i> 6. 장애 대응 시나리오 (Troubleshooting)</h2>
+          <p>실서버 가동 중 발생할 수 있는 주요 예외 및 필드 조치 가이드입니다.</p>
+          
+          <div class="table-container">
+            <table class="manual-table">
+              <thead>
+                <tr>
+                  <th>장애 유형</th>
+                  <th>발생 원인</th>
+                  <th>필드 조치 매뉴얼 (Field Action Plan)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>웹페이지 접속 불가</strong></td>
+                  <td>Docker 데몬 정지 또는 포트 충돌</td>
+                  <td>터미널에서 <code>docker-compose restart</code> 또는 서비스 포트 할당 상태 확인.</td>
+                </tr>
+                <tr>
+                  <td><strong>구 데이터 지속 표출</strong></td>
+                  <td>Selenium 업데이트 스크립트 크래시</td>
+                  <td><code>logs/updater.log</code>를 확인하여 포털 변경 유무 확인 후 수동 업데이터 실행.</td>
+                </tr>
+                <tr>
+                  <td><strong>도어락 비밀번호 불일치</strong></td>
+                  <td>물리 도어락 세팅 누락</td>
+                  <td>관리자 모드(`/admin/ppc`)에서 미반영(Pending) 목록 유무 확인 및 수동 키 반영.</td>
+                </tr>
+                <tr>
+                  <td><strong>엑셀 로딩 오류</strong></td>
+                  <td>사용자의 엑셀 파일 강제 포맷팅 수정</td>
+                  <td>컬럼명 및 데이터 행 포맷 일치 여부 검사 후 백업본 엑셀로 교체.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 7. Reinstallation Procedures -->
+        <section id="reinstall" class="manual-section glass-card">
+          <h2><i data-lucide="wrench"></i> 7. 시스템 재설치 절차 (Non-Docker 호환용)</h2>
+          <p>Docker 환경을 사용하지 못하는 윈도우 OS 데스크톱 등 레거시 장비에서 수동으로 패키지를 복구 및 재설치하기 위한 단계별 매뉴얼입니다.</p>
+          
+          <ol>
+            <li>
+              <strong>클라우드 데스크톱 동기화 클라이언트 설치</strong>
+              <ul>
+                <li>관리 드라이브 복구를 위해 Google Drive Desktop 클라이언트를 설치합니다.</li>
+                <li><strong>관리 기관 공유 계정 정보:</strong>
+                  <ul>
+                    <li>동기화 계정 ID: <code>welfare-ops@sangseung-restel.mail</code> (보안 대체)</li>
+                    <li>비밀번호: <code>••••••••••••</code> (마스킹 처리)</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <strong>런타임 가상 환경 및 패키지 빌드</strong>
+              <p>터미널(cmd)을 관리자 권한으로 실행하고 소스 폴더 진입 후 의존성 패키지를 순차 설치합니다.</p>
+              <pre><code># Python 3.11.x 환경 여부 점검
+python --version
+
+# requirements.txt 정의 모듈 일괄 설치
+pip install -r requirements.txt</code></pre>
+            </li>
+            <li>
+              <strong>ChromeDriver 수동 매칭 및 브라우저 확장 설치</strong>
+              <ul>
+                <li>실서버 호스트에 설치된 Chrome 브라우저 버전과 일치하는 <code>chromedriver.exe</code>를 다운로드하여 <code>객실업데이트/</code> 폴더 내부로 복사합니다.</li>
+                <li>휴드림 복지 포털 로그인 광고 팝업 제거를 위해 Chrome 개발자 모드를 켜고, <code>chrome extention/</code>의 광고 차단(AdBlocker) 확장 크롬 익스텐션 파일을 로드합니다.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>윈도우 백그라운드 런처 등록</strong>
+              <ul>
+                <li><code>start.bat</code> 파일을 윈도우 작업 스케줄러에 등록하여 "시스템 로그온 시 가장 높은 권한으로 무조건 자동 백그라운드 구동"이 실행되도록 등록을 완료합니다.</li>
+              </ul>
+            </li>
+          </ol>
+        </section>
+
+        <!-- 8. Expansion Guide -->
+        <section id="expansion" class="manual-section glass-card">
+          <h2><i data-lucide="puzzle"></i> 8. 향후 기능 확장 및 개발 가이드</h2>
+          <p>SCSS 아키텍처는 유연한 모듈화 설계를 채택하고 있어 다른 서비스와의 연동 및 확장 개발이 용이합니다.</p>
+          
+          <h3>8.1 SMS / 알림톡 발송 모듈 추가</h3>
+          <p>조회 단말을 쓰지 않고도 손님에게 예약 승인 비밀번호를 자동으로 발송할 수 있도록 SMS Gateway(예: CoolSMS, Aligo 등)를 연동할 수 있는 예시 구조입니다.</p>
+          <pre><code># sms_gateway.py
+import requests
+
+def send_checkin_sms(phone_number, room_no, password):
+    url = "https://api.sms-gateway.service/send"
+    payload = {
+        "to": phone_number,
+        "from": "010-XXXX-XXXX", # 공인 발신 번호
+        "text": f"[상승레스텔 안내] 객실: {room_no}호 / 비밀번호: {password} / 입실시간 15:00 이후"
+    }
+    headers = {"Authorization": "Bearer YOUR_GATEWAY_API_KEY"}
+    response = requests.post(url, json=payload, headers=headers)
+    return response.status_code == 200</code></pre>
+
+          <h3>8.2 데이터베이스(SQLite / MySQL) ORM 전환 가이드</h3>
+          <p>엑셀 파일 기반의 대용량 동시 요청 트래픽 처리 한계를 개선하기 위해 SQLAlchemy ORM 기반의 스키마 매핑 예제 코드입니다.</p>
+          <pre><code>from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
+
+class Reservation(db.Model):
+    __tablename__ = 'reservations'
+    id = db.Column(db.Integer, primary_key=True)
+    res_no = db.Column(db.String(50), unique=True, nullable=False) # 예약번호
+    name = db.Column(db.String(100), nullable=False)
+    room_no = db.Column(db.String(10), nullable=False)
+    in_date = db.Column(db.Date, nullable=False) # 입실일자</code></pre>
+        </section>
+
+        <!-- 9. Directory Tree -->
+        <section id="directory" class="manual-section glass-card">
+          <h2><i data-lucide="folder-tree"></i> 9. 디렉터리 트리 (Directory Structure)</h2>
+          <p>SCSS v2.0의 모듈 구조화 레이아웃입니다.</p>
+          <pre><code>ROKA_SCSS/
+├── docker-compose.yml           # 도커 컨테이너 정의 파일
+├── .env                         # 관리자 패스워드 및 크롤러 API 키 정보
+├── requirements.txt             # 파이썬 종속성 모듈 리스트
+│
+├── 객실셀프체크인/               # [메인 Flask API 웹서버 모듈]
+│   ├── app.py                   # 메인 구동 진입점 (Routing & Scheduler)
+│   ├── start.bat                # 윈도우용 로컬 실행 파일
+│   ├── cleaning_list/           # PDF 청소리스트 임시 적재 디렉터리
+│   ├── data/
+│   │   └── checkin_log.csv      # 사용자 입실 로그 누적 DB
+│   ├── pending/
+│   │   └── 임시생성_비밀번호.xlsm  # 갱신 완료 전 관리자 승인 대기 비밀번호
+│   └── templates/
+│       ├── index.html           # 셀프 체크인 웹 프런트 엔드
+│       ├── 객실리스트.xlsm         # 일일 예약 목록 데이터 소스
+│       └── 객실_도어락_비밀번호.xlsm # 호실 매핑 비밀번호 원본 데이터
+│
+└── 객실업데이트/                 # [Headless Selenium 크롤링 모듈]
+    ├── app.py                   # 크롤러 실행 코드
+    ├── updater.py               # 스케줄러 기반 배치 작업용 스크립트
+    └── chrome_extension/        # 광고 팝업 차단용 Crx 패키지 폴더</code></pre>
+        </section>
+
+        <!-- 10. Checklist -->
+        <section id="checklist" class="manual-section glass-card">
+          <h2><i data-lucide="check-square"></i> 10. 일일 운영 점검 체크리스트</h2>
+          <p>안정적인 무인 운영 환경 유지를 위해 관리 담당자가 일평균 1~2회 필수적으로 확인해야 할 액션 리스트입니다.</p>
+          
+          <div class="table-container">
+            <table class="manual-table checklist-table">
+              <thead>
+                <tr>
+                  <th>점검 주기</th>
+                  <th style="width: 55%;">핵심 점검 항목</th>
+                  <th style="text-align: center;">완료 여부</th>
+                  <th>조치 비고 사항</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>09:00 (출근 직후)</strong></td>
+                  <td>현장의 단말 키오스크 화면이 정상 가동 중이며 네트워크 단절 경고가 없는가?</td>
+                  <td style="text-align: center;"><input type="checkbox"></td>
+                  <td>화면 응답 없음 시 단말기 재기동</td>
+                </tr>
+                <tr>
+                  <td><strong>09:10 (일과 시작)</strong></td>
+                  <td>오늘 퇴실 객실 청소용 '청소 목록 리스트' PDF가 프린터로 자동 출력되었는가?</td>
+                  <td style="text-align: center;"><input type="checkbox"></td>
+                  <td>미출력 시 <code>cleaning_list/</code> 폴더에서 PDF 직접 출력</td>
+                </tr>
+                <tr>
+                  <td><strong>14:30 (배치 체크)</strong></td>
+                  <td>크롤러 스크립트가 기동하여 오늘 예약자 정보 다운로드를 성공적으로 마쳤는가?</td>
+                  <td style="text-align: center;"><input type="checkbox"></td>
+                  <td>실패 시 <code>logs/updater.log</code> 체크 후 수동 강제 업데이트</td>
+                </tr>
+                <tr>
+                  <td><strong>15:00 (입실 시작)</strong></td>
+                  <td>체크인 웹 대시보드에 오늘 예약 매칭 목록이 정상 활성화되었는가?</td>
+                  <td style="text-align: center;"><input type="checkbox"></td>
+                  <td>예약번호 1회 대조 테스트로 동작 유무 검증</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- 11. Data Modification Rules -->
+        <section id="rules" class="manual-section glass-card">
+          <h2><i data-lucide="alert-circle"></i> 11. 비밀번호/객실 변경 시 주의사항</h2>
+          
+          <h3>11.1 객실 도어락 비밀번호 변경 프로세스</h3>
+          <ul>
+            <li>도어락 비밀번호는 오타 전송 등의 인적 예외 방지를 위해 무조건 관리페이지(<code>/admin/ppc</code>) 대시보드 도구로만 수행합니다.</li>
+            <li>생성된 임시 도어락 비밀번호 난수를 실제 물리 객실 도어락 키패드에 동기화 반영한 이후에만 관리 콘솔에서 <strong>[실제 동기화 승인(Apply to Live)]</strong> 버튼을 트리거 처리하십시오.</li>
+          </ul>
+
+          <h3>11.2 당일 현장 객실 교체 대응 매뉴얼</h3>
+          <p>고객 사정 또는 시설 고장으로 인하여 당일 입실 상태에서 현장 호실을 급하게 변경(예: 201호 -> 205호) 처리해야 하는 현장 시나리오입니다.</p>
+          <ol>
+            <li><strong>예약 시스템 내 선 반영:</strong> 웰페어 예약망에서 해당 예약을 '관리자 예비 객실' 또는 변경 타겟 호실로 행정 이동 처리합니다.</li>
+            <li><strong>고객 SMS 안내 발신:</strong> 변경된 객실 호실 정보와 해당 호실의 도어락 비밀번호를 아래의 공식 공지 템플릿에 맞추어 고객 모바일로 발송합니다.
+              <pre><code>[상승레스텔 안내 - 객실 변경 공지]
+안녕하세요, 상승레스텔입니다.
+고객님께서 예약하신 XXX호 객실이 [설비 점검 및 관리 사정]으로 인하여 YYY호 객실로 변경 배정되었습니다.
+객실 내부 등급은 동일하게 제공되며, 출입을 위한 신규 도어락 비밀번호는 ZZZZ 입니다.
+이용에 불편을 드려 죄송합니다. 즐거운 투숙 되시기 바랍니다.
+- 상승레스텔 프런트 데스크 -</code></pre>
+            </li>
+            <li><strong>업데이트 동기화:</strong> 변경 완료 직후 대시보드에서 [강제 동기화(Sync Reserv)]를 실행하여 데이터 불일치 상태를 해소합니다.</li>
+          </ol>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ==========================================
+       FOOTER
+       ========================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-logo">Hyeongmin<span class="gradient-text">.Choi</span></div>
+      <p>&copy; 2026 최형민. All rights reserved.</p>
+      <p style="font-size: 0.8rem; margin-top: 0.5rem; color: var(--text-muted);">
+        Powered by Google DeepMind Antigravity AI
+      </p>
+    </div>
+  </footer>
+
+  <!-- Inline Script for dynamic TOC highlighting & Theme sync -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Initial Theme Sync from localStorage
+      const savedTheme = localStorage.getItem("theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      updateThemeIcons(savedTheme);
+
+      // Theme toggle click handler
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      themeToggleBtn.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme");
+        const newTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        localStorage.setItem("theme", newTheme);
+        updateThemeIcons(newTheme);
+      });
+
+      function updateThemeIcons(theme) {
+        const sunIcon = document.getElementById("theme-icon-sun");
+        const moonIcon = document.getElementById("theme-icon-moon");
+        if (theme === "dark") {
+          sunIcon.style.display = "none";
+          moonIcon.style.display = "block";
+        } else {
+          sunIcon.style.display = "block";
+          moonIcon.style.display = "none";
+        }
+      }
+
+      // Initialize Lucide Icons
+      lucide.createIcons();
+
+      // 2. Sticky TOC Scroll Spy
+      const sections = document.querySelectorAll(".manual-section");
+      const tocLinks = document.querySelectorAll(".toc-link");
+
+      window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          // offset adjusted for navbar
+          if (window.scrollY >= sectionTop - 120) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        tocLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${current}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
