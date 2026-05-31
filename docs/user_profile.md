@@ -3,7 +3,7 @@
 ## A. 자기소개 / About Me
 1. **전공**: 인공지능공학전공
 2. **관심 분야**: 모터스포츠 (텔레메트리 데이터 분석)
-3. **진로 목표**: 데이터 엔지니어 (Data Engineer)
+3. **진로 목표**: 레이스 데이터 엔지니어 (Race Data Engineer)
 4. **강조 역량**: C++, 데이터구조 (Data Structure)
 
 ## B. Education / 학력 및 프로젝트
@@ -13,6 +13,10 @@
   * **개요**: 시뮬레이션(아세토 코르사, Assetto Corsa)에서의 소프트웨어 구조 설계 및 테스트.
   * **최종 목표**: 추후 동아리에서 자작자동차에 하드웨어를 직접 설계 및 탑재하여, 실제 주행 데이터를 실시간으로 받아오는 것.
   * **GitHub Repository**: `https://github.com/20233332choi/ASC_TLMSYS`
+* **공동/고도화 프로젝트**: **Honam-Univ.-POS**
+  * **개요**: 알바 동료(클라이언트 역할)의 초기 뼈대 소스코드를 받아 기능 고도화 및 실전성을 더해 구축한 대학 축제 주점용 실시간 POS 및 모바일 오더링 시스템.
+  * **핵심 기능**: WAL 모드, IMMEDIATE 트랜잭션, 락 타임아웃 30초 설정 등을 통한 고동시성 락 방어 설계 및 SQLite 데이터 유실 방지. PWA 기반 네이티브 웹앱 환경 구축.
+  * **GitHub Repository**: `https://github.com/20233332choi/Honam-Univ.-POS`
 
 ## C. Experience / 경험
 * **ROKA SCSS (무인 객실 셀프 체크인 시스템) 개발 및 실제 운용**:

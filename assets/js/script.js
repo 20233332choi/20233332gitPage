@@ -125,4 +125,291 @@ document.addEventListener('DOMContentLoaded', () => {
       navbar.style.padding = '1.2rem 0';
     }
   });
+
+  /* ==========================================
+     POS EVALUATION REPORT MODAL & CAROUSEL
+     ========================================== */
+  const openReportBtn = document.getElementById('proj-link-honam-report');
+  const posModal = document.getElementById('pos-report-modal');
+  const posOverlay = document.getElementById('pos-modal-overlay');
+  const closeReportBtn = document.getElementById('pos-modal-close-btn');
+
+  if (openReportBtn && posModal) {
+    openReportBtn.addEventListener('click', () => {
+      posModal.classList.add('active');
+      posModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      // Ensure icons are rendered inside the modal
+      lucide.createIcons();
+    });
+  }
+
+  function closePosModal() {
+    if (posModal) {
+      posModal.classList.remove('active');
+      posModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (closeReportBtn) {
+    closeReportBtn.addEventListener('click', closePosModal);
+  }
+  if (posOverlay) {
+    posOverlay.addEventListener('click', closePosModal);
+  }
+
+  // Close on Escape key press
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && posModal && posModal.classList.contains('active')) {
+      closePosModal();
+    }
+  });
+
+  // Carousel Logic
+  const slides = document.querySelectorAll('.pos-slide');
+  const prevBtn = document.getElementById('pos-carousel-prev');
+  const nextBtn = document.getElementById('pos-carousel-next');
+  const dots = document.querySelectorAll('.pos-dot');
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    if (!slides.length) return;
+
+    if (index >= slides.length) {
+      currentSlide = 0;
+    } else if (index < 0) {
+      currentSlide = slides.length - 1;
+    } else {
+      currentSlide = index;
+    }
+
+    slides.forEach((slide, i) => {
+      if (i === currentSlide) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    dots.forEach((dot, i) => {
+      if (i === currentSlide) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => showSlide(currentSlide - 1));
+  }
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => showSlide(currentSlide + 1));
+  }
+
+  dots.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+      showSlide(slideIndex);
+    });
+  });
+
+  /* ==========================================
+     HERO F1 CAR ZOOM ANIMATION (RB19)
+     ========================================== */
+  const heroCar = document.querySelector('.animating-f1-car');
+  const heroSection = document.getElementById('hero');
+
+  function triggerCarZoom() {
+    if (!heroCar) return;
+
+    // Reset animation
+    heroCar.classList.remove('zoom');
+
+    // Trigger reflow
+    void heroCar.offsetWidth;
+
+    // Add active animation class
+    heroCar.classList.add('zoom');
+  }
+
+  // Trigger on load after 800ms
+  if (heroCar) {
+    setTimeout(triggerCarZoom, 800);
+  }
+
+  // Re-trigger zoom animation when clicking on the hero section (but not buttons)
+  if (heroSection) {
+    heroSection.addEventListener('click', (e) => {
+      if (e.target.closest('.btn')) return;
+      triggerCarZoom();
+    });
+  }
+
+  /* ==========================================
+     TOAST NOTIFICATION ENGINE
+     ========================================== */
+  const toastContainer = document.getElementById('toast-container');
+
+  function showToast(message, type = 'info', duration = 4000) {
+    if (!toastContainer) return;
+
+    // Create toast element
+    const toast = document.createElement('div');
+    toast.className = `toast toast-${type}`;
+
+    // Select Lucide icon name based on toast type
+    let iconName = 'info';
+    if (type === 'success') iconName = 'check-circle-2';
+    if (type === 'error') iconName = 'alert-triangle';
+    if (type === 'loading') iconName = 'loader';
+
+    // Set inside content
+    toast.innerHTML = `
+      <div class="toast-icon">
+        <i data-lucide="${iconName}" class="${type === 'loading' ? 'spin' : ''}"></i>
+      </div>
+      <div class="toast-content">${message}</div>
+    `;
+
+    // Append to container
+    toastContainer.appendChild(toast);
+
+    // Render Lucide icons for this new element
+    lucide.createIcons({
+      attrs: {
+        'stroke-width': 2
+      },
+      nameAttr: 'data-lucide',
+      root: toast
+    });
+
+    // Animate in
+    setTimeout(() => {
+      toast.classList.add('show');
+    }, 10);
+
+    // Auto remove logic (unless duration is 0 / manual)
+    if (duration > 0) {
+      setTimeout(() => {
+        dismissToast(toast);
+      }, duration);
+    }
+
+    return toast;
+  }
+
+  function dismissToast(toast) {
+    toast.classList.remove('show');
+    // Wait for transition to end before removing from DOM
+    toast.addEventListener('transitionend', function handler() {
+      toast.remove();
+      toast.removeEventListener('transitionend', handler);
+    });
+  }
+
+  /* ==========================================
+     CONTACT FORM SUBMISSION WITH FALLBACK
+     ========================================== */
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('form-submit-btn');
+
+  // Change this if you have a Web3Forms access key
+  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE'; 
+
+  if (contactForm && submitBtn) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const nameVal = document.getElementById('form-name').value.trim();
+      const emailVal = document.getElementById('form-email').value.trim();
+      const messageVal = document.getElementById('form-message').value.trim();
+
+      if (!nameVal || !emailVal || !messageVal) {
+        showToast('모든 필드를 입력해 주세요.', 'error');
+        return;
+      }
+
+      // Save original button content
+      const originalBtnHTML = submitBtn.innerHTML;
+
+      // Set button to loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = `<i data-lucide="loader" class="spin"></i> 전송 중...`;
+      lucide.createIcons({ root: submitBtn });
+
+      // Show loading toast
+      const loadingToast = showToast('메시지를 전송하고 있습니다...', 'loading', 0);
+
+      // Helper function to trigger mailto fallback
+      const triggerMailtoFallback = (infoMsg) => {
+        dismissToast(loadingToast);
+        showToast(infoMsg, 'info', 5000);
+
+        const emailRecipient = 'gudals6234@chosun.ac.kr';
+        const subject = encodeURIComponent(`[Portfolio Contact] ${nameVal}님으로부터의 메시지`);
+        const body = encodeURIComponent(`보낸 사람: ${nameVal}\n이메일: ${emailVal}\n\n내용:\n${messageVal}`);
+        
+        // Open email client
+        window.location.href = `mailto:${emailRecipient}?subject=${subject}&body=${body}`;
+        
+        // Reset form inputs after fallback is launched
+        contactForm.reset();
+      };
+
+      // Check if access key is the default placeholder or empty
+      if (WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE' || !WEB3FORMS_ACCESS_KEY.trim()) {
+        // Fallback directly
+        setTimeout(() => {
+          triggerMailtoFallback('데모 모드: 이메일 작성을 위해 메일 클라이언트를 실행합니다.');
+          resetBtnState();
+        }, 1200); // Small delay for nice UX feeling
+        return;
+      }
+
+      // Key exists - attempt background send via Web3Forms API
+      try {
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY,
+            name: nameVal,
+            email: emailVal,
+            subject: `[Portfolio Contact] ${nameVal}님으로부터의 메시지`,
+            message: messageVal
+          })
+        });
+
+        const result = await response.json();
+
+        dismissToast(loadingToast);
+
+        if (response.status === 200 && result.success) {
+          showToast('메시지가 성공적으로 전송되었습니다! 확인 후 연락드리겠습니다.', 'success', 5000);
+          contactForm.reset();
+        } else {
+          // API error
+          console.error('Web3Forms Error:', result);
+          triggerMailtoFallback('메시지 발송 실패: 이메일 클라이언트를 실행합니다.');
+        }
+      } catch (error) {
+        console.error('Network Error:', error);
+        dismissToast(loadingToast);
+        triggerMailtoFallback('네트워크 오류: 이메일 클라이언트를 실행합니다.');
+      } finally {
+        resetBtnState();
+      }
+
+      function resetBtnState() {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+        lucide.createIcons({ root: submitBtn });
+      }
+    });
+  }
 });

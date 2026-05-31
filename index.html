@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="ko" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
   <!-- SEO Optimization -->
   <title>최형민 Portfolio | AI & Web Automation Specialist</title>
-  <meta name="description" content="조선대학교 AI/SW학부 인공지능전공 최형민의 개인 CV 및 포트폴리오 사이트입니다. C++ 및 데이터 구조 기반 모터스포츠 차량 텔레메트리 데이터 분석과 데이터 엔지니어링에 열정을 쏟고 있습니다.">
-  <meta name="keywords" content="최형민, 포트폴리오, 조선대학교, 인공지능전공, 텔레메트리, ASC_TLMSYS, SCSS, ROKA_SCSS, 데이터 엔지니어, C++, 자료구조">
+  <meta name="description"
+    content="조선대학교 AI/SW학부 인공지능전공 최형민의 개인 CV 및 포트폴리오 사이트입니다. C++ 및 데이터 구조 기반 모터스포츠 차량 텔레메트리 데이터 분석과 데이터 엔지니어링에 열정을 쏟고 있습니다.">
+  <meta name="keywords" content="최형민, 포트폴리오, 조선대학교, 인공지능전공, 텔레메트리, ASC_TLMTSYS, SCSS, ROKA_SCSS, 데이터 엔지니어, C++, 자료구조">
   <meta name="author" content="최형민">
-  
+
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="최형민 | AI & Web Automation Portfolio">
   <meta property="og:description" content="무인 셀프 체크인 시스템(SCSS) v2.0 개발 및 인공지능공학 전공 포트폴리오">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://20233332choi.github.io/portfolio">
-  
+
   <!-- Lucide Icons for clean aesthetic -->
   <script src="https://unpkg.com/lucide@latest"></script>
-  
+
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
   <!-- ==========================================
@@ -29,7 +32,7 @@
   <header class="navbar" id="navbar">
     <div class="container">
       <a href="#" class="logo" id="nav-logo">Hyeongmin<span class="gradient-text">.Choi</span></a>
-      
+
       <nav>
         <ul class="nav-links" id="nav-menu">
           <li><a href="#about" id="link-about">About</a></li>
@@ -42,12 +45,12 @@
           <li><a href="#contact" id="link-contact">Contact</a></li>
         </ul>
       </nav>
-      
+
       <button class="theme-toggle-btn" id="theme-toggle" aria-label="화면 테마 변경">
         <i data-lucide="sun" id="theme-icon-sun" style="display: none;"></i>
         <i data-lucide="moon" id="theme-icon-moon"></i>
       </button>
-      
+
       <div class="menu-toggle" id="mobile-menu-btn" aria-label="메뉴 열기">
         <i data-lucide="menu" id="menu-icon-hamburger"></i>
         <i data-lucide="x" id="menu-icon-close" style="display: none;"></i>
@@ -60,14 +63,14 @@
        ========================================== -->
   <section class="hero" id="hero">
     <div class="container hero-content">
-      <p class="hero-subtitle fade-in-up">AI & Automation Architect</p>
+      <p class="hero-subtitle fade-in-up">Motorsport Telemetry & Automation Engineer</p>
       <h1 class="hero-title fade-in-up" style="animation-delay: 0.1s;">
-        Building Code to <br><span class="gradient-text">Automate the Real World</span>
+        Connecting Code to <br><span class="gradient-text">Motorsport Physics</span>
       </h1>
       <p class="hero-desc fade-in-up" style="animation-delay: 0.2s;">
         안녕하세요! 조선대학교 인공지능공학과 최형민입니다. <br>
-        실제 운영 중인 무인 체크인 시스템(SCSS) v2.0을 개발한 경험이 있으며, 
-        코드로 일상의 단절을 해소하고 가치를 극대화하는 것에 열정을 가지고 있습니다.
+        C++ 기반의 실시간 모터스포츠 차량 텔레메트리 파이프라인 개발에 몰두하고 있으며,
+        현실의 물리 센서 데이터와 소프트웨어 설계를 융합해 0.001초의 랩타임을 단축하는 가치를 창출합니다.
       </p>
       <div class="hero-btns fade-in-up" style="animation-delay: 0.3s;">
         <a href="#projects" class="btn btn-primary" id="hero-btn-projects">
@@ -78,7 +81,7 @@
         </a>
       </div>
     </div>
-    
+
     <div class="scroll-down">
       <span>Scroll Down</span>
       <div class="mouse">
@@ -96,27 +99,32 @@
       <div class="about-img-container">
         <div class="about-img-box">
           <!-- Profile image (Loads profile.jpg, falls back to SVG on error) -->
-          <img src="assets/images/profile.jpg" alt="최형민 프로필 사진" onerror="this.style.display='none'; document.getElementById('fallback-avatar').style.display='block';">
+          <img src="assets/images/profile.jpg" alt="최형민 프로필 사진"
+            onerror="this.style.display='none'; document.getElementById('fallback-avatar').style.display='block';">
           <!-- Fallback SVG Avatar -->
-          <svg id="fallback-avatar" viewBox="0 0 100 100" class="tech-avatar" style="display: none; width:100%; height:100%; background: linear-gradient(135deg, hsl(250, 85%, 62%), hsl(195, 90%, 50%));">
+          <svg id="fallback-avatar" viewBox="0 0 100 100" class="tech-avatar"
+            style="display: none; width:100%; height:100%; background: linear-gradient(135deg, hsl(250, 85%, 62%), hsl(195, 90%, 50%));">
             <defs>
               <linearGradient id="avatar-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#8a2be2" stop-opacity="0.8"/>
-                <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.8"/>
+                <stop offset="0%" stop-color="#8a2be2" stop-opacity="0.8" />
+                <stop offset="100%" stop-color="#00f2fe" stop-opacity="0.8" />
               </linearGradient>
             </defs>
-            <circle cx="50" cy="35" r="18" fill="#fff" opacity="0.9"/>
-            <path d="M20 85 C20 65, 30 55, 50 55 C70 55, 80 65, 80 85" fill="#fff" opacity="0.9"/>
-            <text x="50" y="55" font-family="'Outfit', sans-serif" font-size="6" font-weight="bold" fill="url(#avatar-grad)" text-anchor="middle">&lt;CODE/&gt;</text>
+            <circle cx="50" cy="35" r="18" fill="#fff" opacity="0.9" />
+            <path d="M20 85 C20 65, 30 55, 50 55 C70 55, 80 65, 80 85" fill="#fff" opacity="0.9" />
+            <text x="50" y="55" font-family="'Outfit', sans-serif" font-size="6" font-weight="bold"
+              fill="url(#avatar-grad)" text-anchor="middle">&lt;CODE/&gt;</text>
           </svg>
         </div>
       </div>
-      
+
       <div class="about-details">
         <p class="about-intro">
-          실제 군 복지시설(상승레스텔)의 비효율적 수동 관리 체계를 완전히 전환한 <strong>SCSS (Self Check in integrated SyStem)</strong>를 제작하여 실전 상용화까지 이끌어냈습니다. 대용량 예약 정보 가공 및 환경 격리를 위해 Docker 기반의 v2.0 아키텍처까지 전면 설계한 데이터 기반 자동화 개발 역량을 보유하고 있습니다.
+          과거 군 복무 시절에는 실상용 무인 체크인 시스템(SCSS) v2.0과 한식당 예약 프로그램 등 부대 행정 효율화를 위한 다양한 실무 솔루션을 밑바닥부터 독자 개발하고 가동하며 탄탄한 데이터 처리와
+          아키텍처 설계의 기초 체력을 다졌습니다. 현재는 그 실전 개발 경험과 네트워크/컨테이너 기술력을 주춧돌 삼아, 모터스포츠 차량의 동역학 센서 데이터를 실시간으로 제어하고 랩타임을 단축하는
+          <strong>레이스 데이터 엔지니어(Race Data Engineer)</strong>라는 더 크고 새로운 영역에 도전하고 있습니다.
         </p>
-        
+
         <div class="info-cards">
           <div class="info-card">
             <h4><i data-lucide="graduation-cap"></i> Major & Study</h4>
@@ -124,11 +132,11 @@
           </div>
           <div class="info-card">
             <h4><i data-lucide="cpu"></i> Motorsport Telemetry</h4>
-            <p>시뮬레이터/차량 센서 데이터 실시간 소켓 수집 및 전처리, 시각화 분석</p>
+            <p>F1 차량 물리 패킷(타이어 IMO 온도, 기어 변속, 서스펜션 로드) 실시간 UDP 소켓 수집 및 분석</p>
           </div>
           <div class="info-card">
             <h4><i data-lucide="target"></i> Future Goal</h4>
-            <p>실하드웨어 센서 데이터와 임베디드 통신을 기반으로 차량 거동을 최적화하는 레이스 데이터 엔지니어</p>
+            <p>실차 CAN 통신 데이터 수집 및 섀시 거동 시각화 툴을 개발하여 피트 월 전략을 수립하는 레이스 데이터 엔지니어</p>
           </div>
           <div class="info-card">
             <h4><i data-lucide="settings"></i> Tech Focus</h4>
@@ -169,7 +177,7 @@
   <section class="container" id="skills">
     <h2 class="section-title fade-in-up">Skills</h2>
     <div class="skills-grid glass-card fade-in-up">
-      
+
       <!-- Category 1: Programming & Systems -->
       <div class="skills-category">
         <h3><i data-lucide="code-2"></i> Programming & Systems</h3>
@@ -203,7 +211,7 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Category 2: AI-Assisted Development (AI 협업 / 바이브 코딩) -->
       <div class="skills-category">
         <h3><i data-lucide="wand-2"></i> AI-Assisted Development</h3>
@@ -315,41 +323,47 @@
   <section class="container" id="projects">
     <h2 class="section-title fade-in-up">Projects</h2>
     <div class="projects-grid">
-      
-      <!-- Project 1: ASC_TLMSYS (Motorsport Telemetry System) -->
-      <div class="project-card glass-card fade-in-up" id="project-asc-tlmsys">
+
+      <!-- Project 1: ASC_TLMTSYS (Motorsport Telemetry System) -->
+      <div class="project-card glass-card fade-in-up" id="project-asc-tlmtsys">
         <div class="project-img-container">
           <div class="project-img-box">
-            <div class="project-visual-mockup" style="background: linear-gradient(135deg, hsl(220, 80%, 12%), hsl(225, 25%, 8%));">
-              <div class="mockup-header" style="color: hsl(200, 90%, 55%);">ASC_TLMSYS Console & Dash</div>
-              <div class="mockup-screen" style="color: hsl(200, 100%, 75%); border-color: hsla(200, 80%, 50%, 0.3); overflow-y: hidden; font-size: 0.78rem;">
-                <span style="color:#ffffff;">$ python app.py</span><br/>
-                <span style="color:#00B894;">INFO: Uvicorn running on http://127.0.0.1:8000</span><br/>
-                <span style="color:#00B894;">[Server] UDP 텔레메트리 서버 연결됨 (포트 8001)</span><br/>
-                <span>[API] POST /api/telemetry/start -> <span style="color:#00B894;">200 OK</span></span><br/>
-                <span>[F1 Pit Wall] GEAR: <span style="color:#fff; font-weight:bold;">3</span> | Speed: <span style="color:#00e676; font-weight:bold;">106 km/h</span> | RPM: <span style="color:#f1c40f;">1586</span></span><br/>
-                <span>[Physics] Tyre Core Temp: <span style="color:#ff7675;">81.7°C</span> | Brake Temp: <span style="color:#ff7675;">417°C</span></span><br/>
+            <div class="project-visual-mockup"
+              style="background: linear-gradient(135deg, hsl(220, 80%, 12%), hsl(225, 25%, 8%));">
+              <div class="mockup-header" style="color: hsl(200, 90%, 55%);">ASC_TLMTSYS Console & Dash</div>
+              <div class="mockup-screen"
+                style="color: hsl(200, 100%, 75%); border-color: hsla(200, 80%, 50%, 0.3); overflow-y: hidden; font-size: 0.78rem;">
+                <span style="color:#ffffff;">$ python app.py</span><br />
+                <span style="color:#00B894;">INFO: Uvicorn running on http://127.0.0.1:8000</span><br />
+                <span style="color:#00B894;">[Server] UDP 텔레메트리 서버 연결됨 (포트 8001)</span><br />
+                <span>[API] POST /api/telemetry/start -> <span style="color:#00B894;">200 OK</span></span><br />
+                <span>[F1 Pit Wall] GEAR: <span style="color:#fff; font-weight:bold;">3</span> | Speed: <span
+                    style="color:#00e676; font-weight:bold;">106 km/h</span> | RPM: <span
+                    style="color:#f1c40f;">1586</span></span><br />
+                <span>[Physics] Tyre Core Temp: <span style="color:#ff7675;">81.7°C</span> | Brake Temp: <span
+                    style="color:#ff7675;">417°C</span></span><br />
                 <span style="color:#20b2aa;">[Telemetry] Suspension load / G-force vector sync complete</span>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="project-details">
           <span class="project-period">2026. 04 - 현재 (진행 중)</span>
-          <h3 class="project-title">ASC_TLMSYS</h3>
+          <h3 class="project-title">ASC_TLMTSYS</h3>
           <p class="project-summary">시뮬레이션 및 실차 환경 통합형 실시간 F1 Pit Wall 스타일 텔레메트리 데이터 분석 플랫폼</p>
           <p class="project-roles"><strong>본인 역할:</strong> 1인 독자 개발 (개인 프로젝트)</p>
-          
+
           <ul class="project-features">
             <li><strong>FastAPI & Uvicorn (포트 8000)</strong> 기반의 고성능 비동기 웹서버 및 데이터 파이프라인 아키텍처 설계</li>
             <li><strong>UDP 소켓 통신 (포트 8001)</strong> 리스너를 구현하여 시뮬레이션 환경으로부터 실시간 물리 센서 패킷 저지연 수집</li>
             <li><strong>F1 Pit Wall Control 대시보드</strong> 구현: 실시간 속도, RPM, 기어 변속(GEAR), 종/횡 G-Force 벡터 시각화</li>
-            <li><strong>상세 차량 기하학 모니터링:</strong> 타이어 Core 온도(81.7°C), I/M/O(내/중/외) 온도 분포, 브레이크 온도(417°C), 서스펜션 트래블/로드 분석</li>
+            <li><strong>상세 차량 기하학 모니터링:</strong> 타이어 Core 온도(81.7°C), I/M/O(내/중/외) 온도 분포, 브레이크 온도(417°C), 서스펜션 트래블/로드 분석
+            </li>
             <li><strong>차량 서브시스템 연동:</strong> ERS 배터리 충방전 상태 모니터링 및 DRS 잠금 해제/LOCKED 상태 실시간 트래킹</li>
             <li><strong>하드웨어 연동 로드맵:</strong> 동아리 자작 자동차의 실시간 CAN 데이터 수집을 위한 센서 데이터 융합 프레임워크 확장 개발 진행 중</li>
           </ul>
-          
+
           <div class="project-tech">
             <span class="tech-tag">C++</span>
             <span class="tech-tag">Socket Programming</span>
@@ -357,9 +371,10 @@
             <span class="tech-tag">Telemetry API</span>
             <span class="tech-tag">Python (Analytics)</span>
           </div>
-          
+
           <div class="project-links">
-            <a href="https://github.com/20233332choi/ASC_TLMTSYS" class="btn btn-primary" id="proj-link-asc-git" target="_blank">
+            <a href="https://github.com/20233332choi/ASC_TLMTSYS" class="btn btn-primary" id="proj-link-asc-git"
+              target="_blank">
               <i data-lucide="github"></i> Repository
             </a>
           </div>
@@ -371,36 +386,39 @@
         <div class="project-img-container">
           <div class="project-img-box">
             <!-- Simulated system UI screen -->
-            <div class="project-visual-mockup" style="background: linear-gradient(135deg, hsl(200, 20%, 10%), hsl(225, 25%, 8%));">
+            <div class="project-visual-mockup"
+              style="background: linear-gradient(135deg, hsl(200, 20%, 10%), hsl(225, 25%, 8%));">
               <div class="mockup-header" style="color: hsl(200, 40%, 65%);">Docker Container: scss logs</div>
               <div class="mockup-screen" style="overflow-y: hidden; font-size: 0.74rem; color: hsl(210, 15%, 80%);">
-                <span style="color:#7f8c8d;">Attaching to scss</span><br/>
-                <span style="color:#00B894;">scss | INFO 로깅 시스템 초기화 완료</span><br/>
-                <span style="color:#00B894;">scss | INFO Scheduler started</span><br/>
-                <span>scss | DEBUG 절대 경로 변환: templates/객실리스트.xlsx -> /app/templates/...</span><br/>
-                <span>scss | DEBUG Next wakeup is due at 14:50:00+09:00</span><br/>
-                <span style="color:#00B894;">scss | INFO Serving on http://0.0.0.0:80</span><br/>
+                <span style="color:#7f8c8d;">Attaching to scss</span><br />
+                <span style="color:#00B894;">scss | INFO 로깅 시스템 초기화 완료</span><br />
+                <span style="color:#00B894;">scss | INFO Scheduler started</span><br />
+                <span>scss | DEBUG 절대 경로 변환: templates/객실리스트.xlsx -> /app/templates/...</span><br />
+                <span>scss | DEBUG Next wakeup is due at 14:50:00+09:00</span><br />
+                <span style="color:#00B894;">scss | INFO Serving on http://0.0.0.0:80</span><br />
                 <span style="color:#00e676;">[Kiosk Status] ONLINE (로컬 키오스크 가동)</span>
               </div>
             </div>
           </div>
         </div>
-        
+
         <div class="project-details">
           <span class="project-period">2025. 01 - 2026. 04 (실제 상시 운용 중)</span>
           <h3 class="project-title">SCSS (Self Check-in Integrated System)</h3>
           <p class="project-summary">군 복지시설(상승레스텔)의 무인 프런트 및 통합 객실 관리 자동화 시스템</p>
           <p class="project-roles"><strong>본인 역할:</strong> 1인 총괄 개발자 / 아키텍트 (군 시절 일병 독자 개발)</p>
-          
+
           <ul class="project-features">
             <li>일병 시절, 독학(파이썬/네트워크 구조)과 AI 에이전트를 적극 활용하여 혼자서 전체 시스템 설계 및 실서버 기동</li>
-            <li><strong>Window os 기반 키오스크 웹 인터페이스 구축:</strong> 오프라인 프런트 데스크에 실제 키오스크 시스템을 도입하여 고객이 직접 조회/입력하는 무인화 체계 성립</li>
+            <li><strong>Window os 기반 키오스크 웹 인터페이스 구축:</strong> 오프라인 프런트 데스크에 실제 키오스크 시스템을 도입하여 고객이 직접 조회/입력하는 무인화 체계 성립
+            </li>
             <li>육군복지포털(휴드림) 예약망 예약번호 입력을 통한 **실시간 호실 매칭 및 도어락 비밀번호 즉각 조회** 로직 완성</li>
             <li><strong>Pandas & APScheduler 스케줄러:</strong> 매일 14:50 복지 포털 데이터 크롤링 파일을 자동 분석 및 업데이트(절대경로 자동변환 포함)</li>
-            <li>청소리스트 PDF 자동 생성 및 네트워크 프린터 인쇄 자동화 구현</li>
+            <li><strong>모듈 확장형 아키텍처 (v1.0~):</strong> 청소리스트 PDF 자동 생성 및 네트워크 인쇄 자동화 등 부가 기능들을 본체 수정 없이 독립 모듈 형태로 추가 및
+              탈부착할 수 있는 설계 확립</li>
             <li>Docker 컨테이너화 및 docker-compose 배포를 통한 24시간 백그라운드 구동 보장</li>
           </ul>
-          
+
           <div class="project-tech">
             <span class="tech-tag">Python</span>
             <span class="tech-tag">Flask</span>
@@ -409,9 +427,10 @@
             <span class="tech-tag">Selenium</span>
             <span class="tech-tag">APScheduler</span>
           </div>
-          
+
           <div class="project-links">
-            <a href="https://github.com/20233332choi/ROKA_SCSS" class="btn btn-secondary" id="proj-link-scss-git" target="_blank">
+            <a href="https://github.com/20233332choi/ROKA_SCSS" class="btn btn-secondary" id="proj-link-scss-git"
+              target="_blank">
               <i data-lucide="github"></i> Repository
             </a>
             <a href="./manual.html" class="btn btn-primary" id="proj-link-scss-manual" target="_blank">
@@ -420,7 +439,68 @@
           </div>
         </div>
       </div>
-      
+
+      <!-- Project 3: Honam-Univ.-POS (Festival Real-Time POS & Order System) -->
+      <div class="project-card glass-card fade-in-up" id="project-honam-pos">
+        <div class="project-img-container">
+          <div class="project-img-box">
+            <div class="project-visual-mockup"
+              style="background: linear-gradient(135deg, hsl(145, 80%, 12%), hsl(225, 25%, 8%));">
+              <div class="mockup-header" style="color: hsl(145, 90%, 55%);">Honam POS Server Logs</div>
+              <div class="mockup-screen"
+                style="color: hsl(145, 100%, 75%); border-color: hsla(145, 80%, 50%, 0.3); overflow-y: hidden; font-size: 0.74rem;">
+                <span style="color:#ffffff;">$ python app.py</span><br />
+                <span style="color:#00B894;">INFO: Serving on http://0.0.0.0:3000</span><br />
+                <span style="color:#00B894;">[Socket.IO] Client (Table 5) Connected.</span><br />
+                <span>[WAL Mode] SQLite WAL journal mode enabled.</span><br />
+                <span>[DB Lock Guard] BEGIN IMMEDIATE Transaction Success.</span><br />
+                <span style="color:#00e676;">[Order Received] Table 3: 안주류 A x2, 음료 x4</span><br />
+                <span style="color:#20b2aa;">[PWA] 8 Devices Live (1 Master + 7 Mobile Order Client)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-details">
+          <span class="project-period">2026. 05 (축제에서 성공적으로 운영 완료)</span>
+          <h3 class="project-title">호남대학교 축제 주점 무인/서빙 통합 POS 시스템</h3>
+          <p class="project-summary">대학 축제 주점용 고동시성 지원 실시간 무인/서빙 통합 POS 시스템</p>
+          <p class="project-roles"><strong>본인 역할:</strong> 공동 개발자 / 백엔드 및 동시성 아키텍트 (뼈대 고도화 및 실전 기능 추가)</p>
+
+          <ul class="project-features">
+            <li><strong>Socket.IO 실시간 연동:</strong> 1대의 마스터 POS 단말기와 7대의 서빙 모바일 오더기 기기간의 즉각적인 주문/대기 동기화 파이프라인 구축</li>
+            <li><strong>고동시성 락 방어 설계:</strong> SQLite3 동시 트랜잭션 폭주 시 발생하는 `database is locked` 에러 해결을 위해
+              <strong>WAL(Write-Ahead Logging) 저널 모드 강제</strong> 및 락 타임아웃 30초 확장
+            </li>
+            <li><strong>데이터 유실 방지:</strong> 주문/착석 조작 시 <strong>IMMEDIATE 트랜잭션</strong> 의무화 적용으로 동시성 업데이트 유실(Lost Update)
+              버그 원천 해결</li>
+            <li><strong>이전 개발 경험과의 연계:</strong> 군 복무 중 독자 설계했던 '한식당 예약 프로그램'의 DB 설계 경험과 출시 직전 겪었던 보안성 심사 피드백을 기반으로, 데이터
+              무결성 검증 및 로컬 네트워크 보안 격리(비공개 AP 및 ngrok IP 대여 예방) 설계 선제 도입</li>
+            <li><strong>PWA(Progressive Web App) 앱 모드:</strong> 모바일 크롬/사파리 홈 화면 추가 기능을 활용하여 별도의 APK 빌드 없이 오프라인 전체 화면 앱
+              네이티브 환경 구현</li>
+          </ul>
+
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">Flask-SocketIO</span>
+            <span class="tech-tag">SQLite3</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">PWA</span>
+          </div>
+
+          <div class="project-links">
+            <a href="https://github.com/20233332choi/Honam-Univ.-POS" class="btn btn-primary" id="proj-link-honam-git"
+              target="_blank">
+              <i data-lucide="github"></i> Repository
+            </a>
+            <button class="btn btn-secondary" id="proj-link-honam-report">
+              <i data-lucide="file-check"></i> 운영 평가서 보기
+            </button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -430,21 +510,26 @@
   <section class="container" id="experience">
     <h2 class="section-title fade-in-up">Experience</h2>
     <div class="timeline glass-card fade-in-up">
-      
+
       <!-- Experience 1 -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
         <div class="timeline-meta">
           <span>2025. 01 - 2026. 04</span>
-          <span>육군 7군단 상승레스텔</span>
+          <span>육군 제7군단 상승레스텔(군 복지시설)</span>
         </div>
-        <h3 class="timeline-title">무인 셀프 체크인 자동화 시스템 (SCSS) 독자 개발 및 운용</h3>
-        <p class="timeline-sub">IT 자동화 프로젝트 1인 개발 (군 시절 일병 복무 중)</p>
+        <h3 class="timeline-title">무인 셀프 체크인 시스템(SCSS) 및 한식당 예약 시스템 독자 개발</h3>
+        <p class="timeline-sub">IT 자동화 프로젝트 1인 개발 (군 시절 복무 중)</p>
         <div class="timeline-desc">
           <ul>
-            <li><strong>AI 에이전트 협업 설계:</strong> 군 복무 시절 일병의 신분으로 AI 에이전트를 조력자로 활용하여 시스템의 설계 단계부터 배포까지 혼자서 성공적으로 구현</li>
-            <li><strong>기초 지식 독학:</strong> 레거시 관리 환경의 단절을 타파하고자 파이썬 및 웹/소켓 네트워크 구조 기초를 맨땅에서 치열하게 독학하여 실전에 대입</li>
-            <li><strong>상용 가동 실적:</strong> 프런트 문자 발송 자동화 및 객실 매치 알고리즘을 융합하여 24시간 가동 가능한 무인 체크인 시스템을 실제 복지시설 현업에 성공적으로 가동 및 실전 검증</li>
+            <li><strong>SCSS 상용 가동 실적:</strong> 파이썬 및 웹/소켓 네트워크를 독학하여, 프런트 문자 발송 자동화 및 객실 매치 알고리즘을 융합한 24시간 가동형 무인 체크인
+              시스템을 현업에 배포 및 검증.</li>
+            <li><strong>한식당 예약 자동화 솔루션 설계:</strong> 군 회관 한식당용 좌석/메뉴 예약 관리 시스템을 Flask와 SQLAlchemy 기반으로 1인 설계 및 테스트 완료.
+            </li>
+            <li><strong>보안성 심사와 극복:</strong> 출시 직전 군 보안성 검토 단계에서 망 격리 및 개인정보 식별 제약으로 인해 실전 배포는 중단되었으나, CSRF 방어, 세션 보안
+              통제, 로깅(Rotating Handler) 구현 등 웹 취약점 제어와 시스템 보안 설계를 깊이 체득하는 계기 마련.</li>
+            <li><strong>AI 에이전트 협업:</strong> 일병 신분의 제한적 개발 인프라 속에서 AI 에이전트를 조력자(페어 프로그래머)로 삼아 긴밀히 협력하며 기획부터 디버깅까지 완수.
+            </li>
           </ul>
         </div>
       </div>
@@ -460,14 +545,17 @@
         <p class="timeline-sub">임베디드 시스템 학습 및 데이터 수집·분석 인프라 설계자</p>
         <div class="timeline-desc">
           <ul>
-            <li><strong>기계-소프트웨어 융합 도전:</strong> 기계공학적 현장 차량 거동 및 임베디드 시스템 구조를 깊이 이해하고, 인공지능 전공의 소프트웨어 및 데이터 최적화 요소를 주입하기 위해 자작자동차 동아리 합류</li>
-            <li><strong>인프라 불완전성 해소 주도:</strong> 대회 우승 수준의 뛰어난 하드웨어 기계 설계 대비, 실시간 데이터 수집 및 분석 시스템의 불안정성을 인지하고 C++/자료구조 기반의 텔레메트리 파이프라인 구축 기획</li>
-            <li><strong>실시간 패킷 수집 최적화:</strong> 시뮬레이터(아세토 코르사) 기반의 실시간 물리 센서 패킷 파싱 모듈 개발을 통해 데이터 전처리 안정성을 확보하고, 실제 자작 차량의 물리 데이터 수집 연동 설계 추진</li>
+            <li><strong>기계-소프트웨어 융합 도전:</strong> 기계공학적 현장 차량 거동 및 임베디드 시스템 구조를 깊이 이해하고, 인공지능 전공의 소프트웨어 및 데이터 최적화 요소를
+              주입하기 위해 자작자동차 동아리 합류</li>
+            <li><strong>인프라 불완전성 해소 주도:</strong> 대회 우승 수준의 뛰어난 하드웨어 기계 설계 대비, 실시간 데이터 수집 및 분석 시스템의 불안정성을 인지하고 C++/자료구조
+              기반의 텔레메트리 파이프라인 구축 기획</li>
+            <li><strong>실시간 패킷 수집 최적화:</strong> 시뮬레이터(아세토 코르사) 기반의 실시간 물리 센서 패킷 파싱 모듈 개발을 통해 데이터 전처리 안정성을 확보하고, 실제 자작
+              차량의 물리 데이터 수집 연동 설계 추진</li>
             <li><strong>오픈소스 협업 전파:</strong> 개발된 수집 모듈의 깃허브 오픈소스 공유 및 동아리원 간의 협업 표준을 수립하기 위해 오픈소스(OSS) 협업 가이드 제공</li>
           </ul>
         </div>
       </div>
-      
+
     </div>
   </section>
 
@@ -477,17 +565,18 @@
   <section class="container cv-section" id="cv">
     <h2 class="section-title fade-in-up">CV / Resume</h2>
     <div class="cv-card glass-card fade-in-up">
-      <i data-lucide="file-text" style="width: 60px; height: 60px; color: var(--clr-primary); margin-bottom: 0.5rem;"></i>
+      <i data-lucide="file-text"
+        style="width: 60px; height: 60px; color: var(--clr-primary); margin-bottom: 0.5rem;"></i>
       <h3>최형민 이력서 (Resume)</h3>
       <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto;">
         인공지능공학과 학부 생활과 군 복지시설 시스템 자동화 현업 개발자로서의 경험을 정리한 통합 영문 이력서 파일입니다.
       </p>
-      
+
       <div class="cv-warning">
         <i data-lucide="shield-check" style="width:16px; height:16px;"></i>
         <span>이력서 PDF에는 개인정보 보호를 위해 민감한 식별 정보(주소, 주민번호 등)가 배제되어 있습니다.</span>
       </div>
-      
+
       <a href="./resume.pdf" class="btn btn-primary" id="cv-download-link" download>
         <i data-lucide="download"></i> Download My Resume
       </a>
@@ -500,25 +589,27 @@
   <section class="container" id="career">
     <h2 class="section-title fade-in-up">Career Goal / Future Plan</h2>
     <div class="goals-grid">
-      
+
       <div class="goal-card glass-card fade-in-up">
         <span class="goal-icon"><i data-lucide="gauge"></i></span>
         <h3>Motorsport Telemetry Engineer</h3>
         <p>레이싱 카의 실시간 물리 데이터(속도, RPM, G-Force 등) 수집 인프라를 구축하고, 전략 수립과 성능 분석의 핵심이 되는 고효율 텔레메트리 파이프라인 개발자를 지향합니다.</p>
       </div>
-      
+
       <div class="goal-card glass-card fade-in-up">
         <span class="goal-icon"><i data-lucide="database"></i></span>
         <h3>Race Data Engineer</h3>
-        <p>차량에서 발생하는 실시간 센서 패킷과 CAN 데이터를 저지연(Low-Latency)으로 수집·가공하고, 레이스 전략 및 머신 세팅 최적화의 핵심 근거를 제시하는 레이스 데이터 엔지니어를 지향합니다.</p>
+        <p>차량에서 발생하는 실시간 센서 패킷과 CAN 데이터를 저지연(Low-Latency)으로 수집·가공하고, 레이스 전략 및 머신 세팅 최적화의 핵심 근거를 제시하는 레이스 데이터 엔지니어를
+          지향합니다.</p>
       </div>
-      
+
       <div class="goal-card glass-card fade-in-up">
         <span class="goal-icon"><i data-lucide="cpu"></i></span>
         <h3>Hardware-Software System Integrator</h3>
-        <p>자작자동차 동아리 하드웨어 설계 협업과 연계하여, 실제 차량 센서 데이터(CAN, 임베디드 디바이스)를 직접 로드하고 소프트웨어 분석 모듈에 연결하는 실천형 시스템 융합 엔지니어로 활약하고자 합니다.</p>
+        <p>자작자동차 동아리 하드웨어 설계 협업과 연계하여, 실제 차량 센서 데이터(CAN, 임베디드 디바이스)를 직접 로드하고 소프트웨어 분석 모듈에 연결하는 실천형 시스템 융합 엔지니어로 활약하고자
+          합니다.</p>
       </div>
-      
+
     </div>
   </section>
 
@@ -528,30 +619,31 @@
   <section class="container" id="contact">
     <h2 class="section-title fade-in-up">Contact</h2>
     <div class="contact-layout">
-      
+
       <div class="contact-info fade-in-up">
         <h3>Let's build something together!</h3>
         <p style="color: var(--text-muted); margin-bottom: 1.5rem;">
           궁금한 점이 있으시거나 웹 자동화, AI 솔루션 프로젝트 협업을 원하신다면 언제든지 편하게 연락해 주세요.
         </p>
-        
+
         <div class="contact-items">
           <div class="contact-item">
             <div class="contact-icon"><i data-lucide="mail"></i></div>
             <div class="contact-details">
               <h4>Email</h4>
-              <p><a href="mailto:chm62@naver.com" class="contact-link" id="contact-mail">chm62@naver.com</a></p>
+              <p><a href="mailto:gudals6234@chosun.ac.kr" class="contact-link" id="contact-mail">gudals6234@chosun.ac.kr</a></p>
             </div>
           </div>
-          
+
           <div class="contact-item">
             <div class="contact-icon"><i data-lucide="github"></i></div>
             <div class="contact-details">
               <h4>GitHub</h4>
-              <p><a href="https://github.com/20233332choi" class="contact-link" id="contact-github" target="_blank">github.com/20233332choi</a></p>
+              <p><a href="https://github.com/20233332choi" class="contact-link" id="contact-github"
+                  target="_blank">github.com/20233332choi</a></p>
             </div>
           </div>
-          
+
           <div class="contact-item">
             <div class="contact-icon"><i data-lucide="external-link"></i></div>
             <div class="contact-details">
@@ -561,31 +653,33 @@
           </div>
         </div>
       </div>
-      
+
       <!-- Premium interactive fake form for beautiful look -->
       <div class="contact-form-card glass-card fade-in-up">
-        <form id="contact-form" onsubmit="event.preventDefault(); alert('포트폴리오 데모 폼입니다. 실제 연락은 이메일로 부탁드립니다!');">
+        <form id="contact-form">
           <div class="form-group">
             <label for="form-name">Name</label>
             <input type="text" id="form-name" class="form-control" placeholder="성함 또는 기업명을 입력해 주세요." required>
           </div>
-          
+
           <div class="form-group">
             <label for="form-email">Email</label>
             <input type="email" id="form-email" class="form-control" placeholder="답변받으실 이메일 주소를 입력해 주세요." required>
           </div>
-          
+
           <div class="form-group">
             <label for="form-message">Message</label>
-            <textarea id="form-message" class="form-control" rows="5" placeholder="메시지 내용을 입력해 주세요." required></textarea>
+            <textarea id="form-message" class="form-control" rows="5" placeholder="메시지 내용을 입력해 주세요."
+              required></textarea>
           </div>
-          
-          <button type="submit" class="btn btn-primary" id="form-submit-btn" style="width: 100%; justify-content: center;">
+
+          <button type="submit" class="btn btn-primary" id="form-submit-btn"
+            style="width: 100%; justify-content: center;">
             <i data-lucide="send"></i> 메시지 전송
           </button>
         </form>
       </div>
-      
+
     </div>
   </section>
 
@@ -602,6 +696,96 @@
     </div>
   </footer>
 
+  <!-- ==========================================
+       POS EVALUATION REPORT MODAL
+       ========================================== -->
+  <div class="pos-modal" id="pos-report-modal" aria-hidden="true" role="dialog" aria-labelledby="pos-modal-title">
+    <div class="pos-modal-overlay" id="pos-modal-overlay"></div>
+    <div class="pos-modal-content glass-card">
+      <button class="pos-modal-close" id="pos-modal-close-btn" aria-label="닫기">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <h3 class="pos-modal-title" id="pos-modal-title">
+        <span class="gradient-text">호남대학교 축제 주점 POS 운영 평가 보고서</span>
+      </h3>
+      
+      <div class="pos-modal-grid">
+        <!-- Left Column: Photo Carousel -->
+        <div class="pos-carousel-container">
+          <div class="pos-carousel-slides">
+            <div class="pos-slide active">
+              <img src="assets/images/pos_run_1.png" alt="태블릿 인터페이스 실전 운영 화면">
+              <div class="pos-slide-caption">현장 운영 중인 오더 태블릿 인터페이스 (Socket.IO 연동)</div>
+            </div>
+            <div class="pos-slide">
+              <img src="assets/images/pos_run_2.png" alt="축제 주점 현장 부스 내 실시간 POS 활용">
+              <div class="pos-slide-caption">축제 주점 스태프가 태블릿으로 실시간 주문 현황 확인</div>
+            </div>
+          </div>
+          
+          <button class="pos-carousel-btn prev" id="pos-carousel-prev" aria-label="이전 사진">
+            <i data-lucide="chevron-left"></i>
+          </button>
+          <button class="pos-carousel-btn next" id="pos-carousel-next" aria-label="다음 사진">
+            <i data-lucide="chevron-right"></i>
+          </button>
+          
+          <div class="pos-carousel-dots">
+            <span class="pos-dot active" data-slide="0"></span>
+            <span class="pos-dot" data-slide="1"></span>
+          </div>
+        </div>
+        
+        <!-- Right Column: Structured Accomplishments -->
+        <div class="pos-report-details">
+          <div class="report-meta">
+            <span class="report-badge"><i data-lucide="calendar"></i> 2026. 05</span>
+            <span class="report-badge success"><i data-lucide="check-circle-2"></i> 성공적 운영 완료</span>
+          </div>
+          
+          <div class="report-section">
+            <h4><span class="point-num">01</span> ngrok 외부 서버 & 데이터 안정성</h4>
+            <p>
+              서버를 로컬 환경이 아닌, 외부 클라우드 인프라와 <strong>ngrok 터널링</strong>을 통해 외부망으로 이중화하여 배포했습니다. 축제 현장 부스의 불안정한 공유기/AP 접속 단선이나 갑작스러운 네트워크 장애가 일어났을 때도 데이터 손실 없이 안전하게 모든 주문 내역이 보존되었고, 망이 재활성화되었을 때 즉시 실시간 동기화로 복귀했습니다.
+            </p>
+          </div>
+          
+          <div class="report-section">
+            <h4><span class="point-num">02</span> 수기 주문에서 프로그램으로 디지털 전환(DX)</h4>
+            <p>
+              종이에 받아 적고 주방까지 직접 들고 뛰어다니던 이전의 전통적 수기 주문 전달 방식을 <strong>네이티브 PWA 기기 연동 프로그램</strong>으로 전면 디지털화했습니다. 그 결과 주문 접수와 상태 변경의 불필요한 이동 동선이 제거되어 <strong>대부분의 현장 인력이 조리와 요리에만 집중</strong>할 수 있는 주방 중심 운영 체계가 잡히며 주말 매출 및 회전율이 비약적으로 증가했습니다.
+            </p>
+          </div>
+          
+          <div class="report-section">
+            <h4><span class="point-num">03</span> 다수 디바이스 대응 고동시성 DB 설계</h4>
+            <p>
+              마스터 단말 1대와 서버용 오더기 7대 등 <strong>동시 8대의 디바이스가 밀려드는 주문 내역을 실시간 전송</strong>했습니다. 데이터 충돌을 원천 차단하기 위해 <strong>SQLite WAL 저널 모드 활성화</strong>, DB 락 타임아웃 30초 조정, 핵심 CUD 쿼리 시 <strong>IMMEDIATE 트랜잭션 선언</strong> 등 동시성 격리 수준 설계를 적용하여 단 한 건의 <code>database is locked</code> 에러 없이 안전하게 마쳤습니다.
+            </p>
+          </div>
+          
+          <div class="report-section">
+            <h4><span class="point-num">04</span> 실시간 서버 장애 대응 체계 (WOL & TeamViewer)</h4>
+            <p>
+              서버 컴퓨터의 물리적인 다운이나 운영체제 오류 같은 돌발 사태에 대응하기 위해, <strong>KT 공유기 자체 웹 페이지의 WOL (Wake on LAN) 기능</strong>과 <strong>TeamViewer(팀뷰어) 원격 제어 솔루션</strong>을 사전에 구성하여 연동 가동했습니다. 이를 통해 비상 상황 발생 시 언제 어디서든 스마트폰이나 외부 단말로 원격 부팅과 프로세스 복구가 가능한 백업 관리망을 마련했습니다.
+            </p>
+          </div>
+          
+          <div class="report-footer">
+            <a href="docs/pos_evaluation.md" class="btn btn-primary" target="_blank" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">
+              <i data-lucide="file-text"></i> 전체 상세 평가서(Markdown) 읽기
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
   <script src="assets/js/script.js"></script>
 </body>
+
 </html>
