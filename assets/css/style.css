@@ -524,42 +524,51 @@ section {
 
 .skill-item {
   width: 100%;
+  padding: 0.85rem 1.2rem;
+  background-color: hsla(225, 20%, 5%, 0.25);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.skill-info {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
-  font-weight: 500;
+[data-theme="light"] .skill-item {
+  background-color: hsla(210, 20%, 97%, 0.4);
 }
 
 .skill-name {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.skill-level-desc {
+/* Skill Badge Styling */
+.skill-badge {
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+}
+
+.badge-advanced {
+  background-color: hsla(var(--hue-accent-alt), 100%, 55%, 0.12);
+  color: var(--clr-accent);
+  border-color: hsla(var(--hue-accent-alt), 100%, 55%, 0.22);
+}
+
+.badge-intermediate {
+  background-color: hsla(var(--hue-accent), 100%, 50%, 0.12);
+  color: var(--clr-primary);
+  border-color: hsla(var(--hue-accent), 100%, 50%, 0.22);
+}
+
+.badge-basic {
+  background-color: hsla(215, 16%, 45%, 0.12);
   color: var(--text-muted);
-  font-size: 0.85rem;
-}
-
-.skill-bar {
-  width: 100%;
-  height: 8px;
-  background-color: var(--border-color);
-  border-radius: 4px;
-  overflow: hidden;
-  position: relative;
-}
-
-.skill-progress {
-  height: 100%;
-  border-radius: 4px;
-  background: var(--clr-grad);
-  width: 0; /* Dynamic injection via JS */
-  transition: width 1.5s cubic-bezier(0.1, 0.8, 0.25, 1);
+  border-color: hsla(215, 16%, 45%, 0.22);
 }
 
 /* ==========================================

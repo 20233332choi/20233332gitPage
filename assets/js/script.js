@@ -88,29 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
     elementObserver.observe(el);
   });
 
-  /* ==========================================
-     SKILL BARS FILL ANIMATION
-     ========================================== */
-  const skillSection = document.getElementById('skills');
-  const progressBars = document.querySelectorAll('.skill-progress');
 
-  const skillObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        progressBars.forEach(bar => {
-          const level = bar.getAttribute('data-level');
-          bar.style.width = level;
-        });
-        skillObserver.unobserve(entry.target); // Fill only once
-      }
-    });
-  }, {
-    threshold: 0.2
-  });
-
-  if (skillSection) {
-    skillObserver.observe(skillSection);
-  }
 
   /* ==========================================
      NAVBAR SHADOW ON SCROLL
