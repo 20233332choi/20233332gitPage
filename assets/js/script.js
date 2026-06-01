@@ -57,48 +57,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close mobile menu and smooth scroll for all internal anchor links
+  // Close mobile menu when any internal anchor link is clicked
+  // Native scroll-behavior: smooth + scroll-margin-top: 80px handles the rest (same as CV button)
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function () {
       const targetId = this.getAttribute('href');
-      if (targetId === '#') return; // Ignore top anchor
-      
-      const targetElement = document.querySelector(targetId);
-      if (targetElement) {
-        e.preventDefault();
-        
-        // Close mobile nav menu if open
-        if (navMenu && navMenu.classList.contains('active')) {
-          navMenu.classList.remove('active');
-          if (menuIconHam) menuIconHam.style.display = 'block';
-          if (menuIconClose) menuIconClose.style.display = 'none';
-        }
-        
-        // Smooth scroll to target with navbar offset
-        const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+      if (targetId === '#') return;
+
+      // Close mobile nav menu if open
+      if (navMenu && navMenu.classList.contains('active')) {
+        navMenu.classList.remove('active');
+        if (menuIconHam) menuIconHam.style.display = 'block';
+        if (menuIconClose) menuIconClose.style.display = 'none';
       }
+      // No e.preventDefault() — let browser native scroll handle it
+      // CSS: scroll-behavior: smooth + scroll-margin-top: 80px does the job
     });
   });
-
-  // Dedicated handler for "프로젝트 보기" hero button
-  const heroBtnProjects = document.getElementById('hero-btn-projects');
-  if (heroBtnProjects) {
-    heroBtnProjects.addEventListener('click', function(e) {
-      e.preventDefault();
-      const target = document.getElementById('projects');
-      if (target) {
-        const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
-        const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-      }
-    });
-  }
 
 
   /* ==========================================
