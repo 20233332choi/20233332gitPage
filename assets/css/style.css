@@ -726,7 +726,7 @@ section {
   padding: 1rem;
   font-family: 'Consolas', monospace;
   font-size: 0.75rem;
-  text-align: left;
+  text-align: left !important; /* Force left alignment of console text */
   overflow: hidden;
   white-space: pre-wrap; /* Wraps text naturally at spaces */
   word-break: normal;
