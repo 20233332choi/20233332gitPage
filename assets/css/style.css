@@ -712,7 +712,7 @@ section {
 
 .mockup-screen {
   width: 85%;
-  height: 55%;
+  height: 190px;
   background: hsla(225, 25%, 22%, 0.9);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -721,7 +721,9 @@ section {
   font-family: 'Consolas', monospace;
   font-size: 0.75rem;
   text-align: left;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: auto;
+  white-space: nowrap;
   box-shadow: var(--shadow);
   color: hsl(120, 100%, 75%);
 }
@@ -1737,10 +1739,17 @@ p, li, span, h1, h2, h3, h4, h5 {
 }
 
 /* Console Mockup Screen text overflow safeguard */
-.mockup-screen {
-  overflow-x: auto;
-  white-space: pre-wrap;
-  word-break: break-all;
+/* Console Mockup Screen custom scrollbar styling */
+.mockup-screen::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+.mockup-screen::-webkit-scrollbar-thumb {
+  background-color: var(--border-color);
+  border-radius: 3px;
+}
+.mockup-screen::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Telemetry Demo Video Modal Responsive Layout */
@@ -1770,7 +1779,7 @@ p, li, span, h1, h2, h3, h4, h5 {
   
   .mockup-screen {
     width: 92% !important;
-    height: 65% !important;
+    height: 145px !important;
     font-size: 0.64rem !important;
     padding: 0.6rem !important;
     margin-top: 0.6rem !important;
