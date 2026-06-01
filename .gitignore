@@ -1,3 +1,10 @@
 /legacy
 /한식당 예약 프로그램
 nexChng.txt
+
+# Editor / IDE configurations
+.vscode/
+
+# Document templates and guidelines (unnecessary for deployment)
+docs/instructions.md
+docs/user_profile.md
