@@ -1769,6 +1769,61 @@ p, li, span, h1, h2, h3, h4, h5 {
   background: #000;
 }
 
+.video-description-box {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  background: hsla(220, 30%, 12%, 0.5);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+[data-theme="light"] .video-description-box {
+  background: hsla(210, 20%, 90%, 0.5);
+}
+
+.video-desc-title {
+  font-size: 0.95rem;
+  margin-bottom: 0.8rem;
+  color: var(--clr-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
+}
+
+.video-desc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.video-desc-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding-left: 0.8rem;
+}
+
+.video-desc-item.top-left {
+  border-left: 3px solid hsl(200, 90%, 55%);
+}
+
+.video-desc-item.bottom-left {
+  border-left: 3px solid hsl(145, 90%, 55%);
+}
+
+.video-desc-item.right {
+  border-left: 3px solid var(--clr-accent);
+}
+
+.video-desc-item strong {
+  color: var(--text-main);
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   #telemetry-modal-content {
     padding: 1.8rem 1.4rem;
