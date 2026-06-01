@@ -74,10 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
           if (menuIconClose) menuIconClose.style.display = 'none';
         }
         
-        // Smooth scroll to target
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        // Smooth scroll to target with navbar offset
+        const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
         });
       }
     });
