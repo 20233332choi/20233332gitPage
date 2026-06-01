@@ -75,13 +75,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         // Smooth scroll to target with navbar offset
-        const navbarHeight = document.getElementById('navbar').offsetHeight || 80;
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navbarHeight;
-        
-        window.scrollTo({
-          top: targetPosition,
-          behavior: 'smooth'
-        });
+        try {
+          const navbarEl = document.getElementById('navbar');
+          const navbarHeight = navbarEl ? navbarEl.offsetHeight : 80;
+          const scrollY = window.scrollY !== undefined ? window.scrollY : window.pageYOffset;
+          const targetPosition = targetElement.getBoundingClientRect().top + scrollY - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+        } catch (err) {
+          console.warn('Custom smooth scroll failed, falling back:', err);
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
       }
     });
   });
