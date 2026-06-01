@@ -275,8 +275,9 @@ section {
 
 /* Buttons */
 .btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.6rem;
   padding: 0.9rem 2rem;
   font-size: 1rem;
@@ -1164,9 +1165,11 @@ select.form-control option {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
 }
 
 .fade-in-up.active {
+  pointer-events: auto;
   opacity: 1;
   transform: translateY(0);
 }
