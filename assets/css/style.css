@@ -1706,6 +1706,35 @@ select.form-control option {
 /* ==========================================
    MOBILE RESPONSIVE OPTIMIZATIONS
    ========================================== */
+/* Typography Clamp Scalings */
+.hero-title {
+  font-size: clamp(2.2rem, 8vw, 4.2rem);
+}
+.section-title {
+  font-size: clamp(1.8rem, 6vw, 2.5rem);
+}
+.project-title {
+  font-size: clamp(1.4rem, 5vw, 2rem);
+}
+.about-intro {
+  font-size: clamp(1rem, 3vw, 1.15rem);
+}
+
+/* Global Word Wrap & Break */
+body {
+  word-break: keep-all; /* Prevents awkward Korean line breaks, but allows wrapping */
+}
+p, li, span, h1, h2, h3, h4, h5 {
+  overflow-wrap: break-word;
+}
+
+/* Console Mockup Screen text overflow safeguard */
+.mockup-screen {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
 /* Telemetry Demo Video Modal Responsive Layout */
 #telemetry-modal-content {
   padding: 2.5rem;
@@ -1741,5 +1770,48 @@ select.form-control option {
   
   .scss-carousel-container .mockup-header {
     font-size: 1.1rem !important;
+  }
+}
+
+/* General Layout Padding Adjustments for Mobile */
+@media (max-width: 576px) {
+  .container {
+    padding: 0 1.2rem;
+  }
+  
+  .glass-card {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .project-card {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .contact-form-card {
+    padding: 1.5rem 1.2rem;
+  }
+  
+  .project-links {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+  }
+  
+  .project-links .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .hero-btns {
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .hero-btns .btn {
+    width: 100%;
+    justify-content: center;
   }
 }
