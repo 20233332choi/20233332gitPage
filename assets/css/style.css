@@ -1244,6 +1244,7 @@ select.form-control option {
     gap: 2rem;
     transition: left 0.4s cubic-bezier(0.77, 0.2, 0.05, 1);
     box-shadow: var(--shadow);
+    overflow-y: auto; /* Allow vertical scroll in mobile landscape mode */
   }
   
   .nav-links.active {
