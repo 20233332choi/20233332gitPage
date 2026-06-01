@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const submitBtn = document.getElementById('form-submit-btn');
 
   // Change this if you have a Web3Forms access key
-  const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY_HERE'; 
+  const WEB3FORMS_ACCESS_KEY = '4e485f3b-980a-42e8-a44e-047f6390e3df';
 
   if (contactForm && submitBtn) {
     contactForm.addEventListener('submit', async (e) => {
@@ -344,10 +344,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailRecipient = 'gudals6234@chosun.ac.kr';
         const subject = encodeURIComponent(`[Portfolio Contact] ${nameVal}님으로부터의 메시지 (${typeVal})`);
         const body = encodeURIComponent(`보낸 사람: ${nameVal}\n이메일: ${emailVal}\n문의 유형: ${typeVal}\n동의 여부: 동의 완료\n\n내용:\n${messageVal}`);
-        
+
         // Open email client
         window.location.href = `mailto:${emailRecipient}?subject=${subject}&body=${body}`;
-        
+
         // Reset form inputs after fallback is launched
         contactForm.reset();
       };
