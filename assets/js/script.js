@@ -112,6 +112,49 @@ document.addEventListener('DOMContentLoaded', () => {
   const posOverlay = document.getElementById('pos-modal-overlay');
   const closeReportBtn = document.getElementById('pos-modal-close-btn');
 
+  // Telemetry Demo Video Modal
+  const openDemoBtn = document.getElementById('proj-link-asc-demo');
+  const telemetryModal = document.getElementById('telemetry-demo-modal');
+  const telemetryOverlay = document.getElementById('telemetry-modal-overlay');
+  const closeDemoBtn = document.getElementById('telemetry-modal-close-btn');
+  const telemetryVideo = document.getElementById('telemetry-video');
+  const telemetryIframe = document.getElementById('telemetry-iframe');
+
+  if (openDemoBtn && telemetryModal) {
+    openDemoBtn.addEventListener('click', () => {
+      telemetryModal.classList.add('active');
+      telemetryModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    });
+  }
+
+  function closeTelemetryModal() {
+    if (telemetryModal) {
+      telemetryModal.classList.remove('active');
+      telemetryModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      
+      // Stop video playback when modal is closed to avoid background sound playing
+      if (telemetryVideo) {
+        telemetryVideo.pause();
+        telemetryVideo.currentTime = 0;
+      }
+      if (telemetryIframe) {
+        const currentSrc = telemetryIframe.src;
+        telemetryIframe.src = '';
+        telemetryIframe.src = currentSrc;
+      }
+    }
+  }
+
+  if (closeDemoBtn) {
+    closeDemoBtn.addEventListener('click', closeTelemetryModal);
+  }
+  if (telemetryOverlay) {
+    telemetryOverlay.addEventListener('click', closeTelemetryModal);
+  }
+
   if (openReportBtn && posModal) {
     openReportBtn.addEventListener('click', () => {
       posModal.classList.add('active');
@@ -139,8 +182,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Close on Escape key press
   window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && posModal && posModal.classList.contains('active')) {
-      closePosModal();
+    if (e.key === 'Escape') {
+      if (posModal && posModal.classList.contains('active')) {
+        closePosModal();
+      }
+      if (telemetryModal && telemetryModal.classList.contains('active')) {
+        closeTelemetryModal();
+      }
     }
   });
 
@@ -192,6 +240,106 @@ document.addEventListener('DOMContentLoaded', () => {
       showSlide(slideIndex);
     });
   });
+
+
+  /* ==========================================
+     SCSS PROJECT AUTO PLAY CAROUSEL
+     ========================================== */
+  const scssSlides = document.querySelectorAll('.scss-slide');
+  const scssIndicators = document.querySelectorAll('.scss-indicator');
+  const scssCarouselContainer = document.querySelector('.scss-carousel-container');
+  let scssCurrentSlide = 0;
+  let scssIntervalId = null;
+  let isAutoPlayStoppedByUser = false; // Flag to permanently disable autoplay on manual control
+
+  function showScssSlide(index) {
+    if (!scssSlides.length) return;
+
+    if (index >= scssSlides.length) {
+      scssCurrentSlide = 0;
+    } else if (index < 0) {
+      scssCurrentSlide = scssSlides.length - 1;
+    } else {
+      scssCurrentSlide = index;
+    }
+
+    scssSlides.forEach((slide, i) => {
+      if (i === scssCurrentSlide) {
+        slide.classList.add('active');
+      } else {
+        slide.classList.remove('active');
+      }
+    });
+
+    scssIndicators.forEach((ind, i) => {
+      if (i === scssCurrentSlide) {
+        ind.classList.add('active');
+      } else {
+        ind.classList.remove('active');
+      }
+    });
+  }
+
+  function startScssAutoPlay() {
+    if (!scssSlides.length || isAutoPlayStoppedByUser) return;
+    scssIntervalId = setInterval(() => {
+      showScssSlide(scssCurrentSlide + 1);
+    }, 4000); // Transitions every 4 seconds
+  }
+
+  function stopScssAutoPlay() {
+    if (scssIntervalId) {
+      clearInterval(scssIntervalId);
+      scssIntervalId = null;
+    }
+  }
+
+  // Initialize auto play
+  if (scssSlides.length) {
+    startScssAutoPlay();
+
+    // Pause auto play when mouse hovers over the container
+    if (scssCarouselContainer) {
+      scssCarouselContainer.addEventListener('mouseenter', stopScssAutoPlay);
+      scssCarouselContainer.addEventListener('mouseleave', () => {
+        if (!isAutoPlayStoppedByUser) {
+          startScssAutoPlay();
+        }
+      });
+    }
+
+    // Helper to permanently stop autoplay on click
+    function handleManualInteraction() {
+      isAutoPlayStoppedByUser = true;
+      stopScssAutoPlay();
+    }
+
+    // Indicator dots click handler
+    scssIndicators.forEach(ind => {
+      ind.addEventListener('click', (e) => {
+        const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+        handleManualInteraction();
+        showScssSlide(slideIndex);
+      });
+    });
+
+    // Arrow controls click handler
+    const prevScssBtn = document.getElementById('scss-carousel-prev');
+    const nextScssBtn = document.getElementById('scss-carousel-next');
+
+    if (prevScssBtn) {
+      prevScssBtn.addEventListener('click', () => {
+        handleManualInteraction();
+        showScssSlide(scssCurrentSlide - 1);
+      });
+    }
+    if (nextScssBtn) {
+      nextScssBtn.addEventListener('click', () => {
+        handleManualInteraction();
+        showScssSlide(scssCurrentSlide + 1);
+      });
+    }
+  }
 
   /* ==========================================
      HERO F1 CAR ZOOM ANIMATION (RB19)

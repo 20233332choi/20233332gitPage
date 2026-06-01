@@ -493,6 +493,17 @@
               </tbody>
             </table>
           </div>
+
+          <div class="alert-box info" style="margin-top: 1.5rem;">
+            <i data-lucide="file-text"></i>
+            <div>
+              <strong>실전 운용 레거시 매뉴얼 열람:</strong> 현재 읽고 계신 문서는 현행 v2.0(Docker 자동화형) 매뉴얼입니다. 개발 당시 실제 군 복지시설 현장 프런트 데스크에서 부대 간부 및 관리병 교육용으로 활용했던 보안 검열본 <strong>v1.1 오리지널 매뉴얼 PDF</strong>를 열람하고 싶으시다면 아래 링크를 클릭해 주십시오.
+              <br>
+              <a href="assets/docs/scss_manual_v1.1.pdf" target="_blank" class="btn-home" style="margin-top: 0.8rem; padding: 0.4rem 1rem; display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                <i data-lucide="download" style="width: 14px; height: 14px;"></i> v1.1 매뉴얼 PDF 열람
+              </a>
+            </div>
+          </div>
         </section>
 
         <!-- 1. Introduction -->
@@ -501,6 +512,13 @@
           <h3>1.1 개발 취지</h3>
           <p>군 복지시설(상승레스텔)의 프런트 데스크 관리와 온라인 복지포털 간의 실시간 데이터 연동이 부재하여, 기존에는 관리병이 예약 내역을 대조한 후 손님들에게 도어락 비밀번호를 수작업으로 조회하여 문자를 발송하는 비효율적인 프로세스로 운영되었습니다. 이는 업무 과부하와 비밀번호 오타 전송 등의 운영 오류를 유발했습니다.</p>
           <p>SCSS는 <strong>예약고객이 프런트 키오스크나 모바일에서 직접 본인의 예약번호를 통해 객실 호수와 도어락 비밀번호를 실시간 조회 및 확인</strong>할 수 있는 무인 자동화 체계를 구축하여, 24시간 무인 프런트 대응을 원활하게 실현하고 행정 소요를 극적으로 단축했습니다.</p>
+          
+          <div class="manual-image-box" style="margin: 2rem 0; text-align: center; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); background-color: var(--bg-surface-opaque); padding: 1rem;">
+            <img src="assets/images/scss_kiosk.png" alt="상승레스텔 프런트에 실제 가동 중인 SCSS 키오스크 단말기" style="max-width: 100%; max-height: 480px; height: auto; border-radius: 8px; display: block; margin: 0 auto; box-shadow: var(--shadow);">
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.8rem; font-weight: 500;">
+              [실물 가동 전경] 상승레스텔 로비 프런트 데스크에 배치되어 24시간 상시 운용 중인 SCSS 로컬 키오스크 화면
+            </p>
+          </div>
           
           <h3>1.2 실전 투입형 애자일 개발 (Agile Development)</h3>
           <div class="alert-box info">

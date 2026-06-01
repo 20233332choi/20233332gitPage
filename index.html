@@ -82,6 +82,8 @@
       </div>
     </div>
 
+
+
     <div class="scroll-down">
       <span>Scroll Down</span>
       <div class="mouse">
@@ -317,6 +319,9 @@
               target="_blank">
               <i data-lucide="github"></i> Repository
             </a>
+            <button class="btn btn-secondary" id="proj-link-asc-demo">
+              <i data-lucide="play-circle"></i> 데모 영상 보기
+            </button>
           </div>
         </div>
       </div>
@@ -324,20 +329,41 @@
       <!-- Project 2: SCSS v2.0 (Unmanned Check-in System) -->
       <div class="project-card glass-card fade-in-up" id="project-scss">
         <div class="project-img-container">
-          <div class="project-img-box">
-            <!-- Simulated system UI screen -->
-            <div class="project-visual-mockup"
-              style="background: linear-gradient(135deg, hsl(200, 20%, 10%), hsl(225, 25%, 8%));">
-              <div class="mockup-header" style="color: hsl(200, 40%, 65%);">Docker Container: scss logs</div>
-              <div class="mockup-screen" style="overflow-y: hidden; font-size: 0.74rem; color: hsl(210, 15%, 80%);">
-                <span style="color:#7f8c8d;">Attaching to scss</span><br />
-                <span style="color:#00B894;">scss | INFO 로깅 시스템 초기화 완료</span><br />
-                <span style="color:#00B894;">scss | INFO Scheduler started</span><br />
-                <span>scss | DEBUG 절대 경로 변환: templates/객실리스트.xlsx -> /app/templates/...</span><br />
-                <span>scss | DEBUG Next wakeup is due at 14:50:00+09:00</span><br />
-                <span style="color:#00B894;">scss | INFO Serving on http://0.0.0.0:80</span><br />
-                <span style="color:#00e676;">[Kiosk Status] ONLINE (로컬 키오스크 가동)</span>
+          <div class="project-img-box scss-carousel-container">
+            <!-- Slide 1: Docker Logs Mockup -->
+            <div class="scss-slide active">
+              <div class="project-visual-mockup"
+                style="background: linear-gradient(135deg, hsl(200, 20%, 10%), hsl(225, 25%, 8%)); width: 100%; height: 100%;">
+                <div class="mockup-header" style="color: hsl(200, 40%, 65%);">Docker Container: scss logs</div>
+                <div class="mockup-screen" style="overflow-y: hidden; font-size: 0.74rem; color: hsl(210, 15%, 80%); width: 85%; height: 55%; margin: 1rem auto 0 auto;">
+                  <span style="color:#7f8c8d;">Attaching to scss</span><br />
+                  <span style="color:#00B894;">scss | INFO 로깅 시스템 초기화 완료</span><br />
+                  <span style="color:#00B894;">scss | INFO Scheduler started</span><br />
+                  <span>scss | DEBUG 절대 경로 변환: templates/객실리스트.xlsx -> /app/templates/...</span><br />
+                  <span>scss | DEBUG Next wakeup is due at 14:50:00+09:00</span><br />
+                  <span style="color:#00B894;">scss | INFO Serving on http://0.0.0.0:80</span><br />
+                  <span style="color:#00e676;">[Kiosk Status] ONLINE (로컬 키오스크 가동)</span>
+                </div>
               </div>
+            </div>
+            
+            <!-- Slide 2: Real Kiosk Image -->
+            <div class="scss-slide">
+              <img src="assets/images/scss_kiosk.png" alt="상승레스텔 SCSS 실제 키오스크 구동 화면" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+
+            <!-- Slide Indicators & Controls -->
+            <div class="scss-carousel-controls">
+              <button class="scss-carousel-btn prev" id="scss-carousel-prev" aria-label="이전 슬라이드">
+                <i data-lucide="chevron-left"></i>
+              </button>
+              <div class="scss-carousel-indicators">
+                <span class="scss-indicator active" data-slide="0"></span>
+                <span class="scss-indicator" data-slide="1"></span>
+              </div>
+              <button class="scss-carousel-btn next" id="scss-carousel-next" aria-label="다음 슬라이드">
+                <i data-lucide="chevron-right"></i>
+              </button>
             </div>
           </div>
         </div>
@@ -369,11 +395,11 @@
           </div>
 
           <div class="project-links">
-            <a href="https://github.com/20233332choi/ROKA_SCSS" class="btn btn-secondary" id="proj-link-scss-git"
+            <a href="https://github.com/20233332choi/ROKA_SCSS" class="btn btn-primary" id="proj-link-scss-git"
               target="_blank">
               <i data-lucide="github"></i> Repository
             </a>
-            <a href="./manual.html" class="btn btn-primary" id="proj-link-scss-manual" target="_blank">
+            <a href="./manual.html" class="btn btn-secondary" id="proj-link-scss-manual" target="_blank">
               <i data-lucide="file-text"></i> 매뉴얼 보기
             </a>
           </div>
@@ -660,6 +686,27 @@
       </p>
     </div>
   </footer>
+
+  <!-- ==========================================
+       TELEMETRY DEMO VIDEO MODAL
+       ========================================== -->
+  <div class="pos-modal" id="telemetry-demo-modal" aria-hidden="true" role="dialog" aria-labelledby="telemetry-modal-title">
+    <div class="pos-modal-overlay" id="telemetry-modal-overlay"></div>
+    <div class="pos-modal-content glass-card" id="telemetry-modal-content" style="max-width: 800px;">
+      <button class="pos-modal-close" id="telemetry-modal-close-btn" aria-label="닫기">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <h3 class="pos-modal-title" id="telemetry-modal-title" style="margin-bottom: 1.5rem;">
+        <span class="gradient-text">ASC_TLMTSYS 실시간 텔레메트리 데모 영상</span>
+      </h3>
+      
+      <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; border: 1px solid var(--border-color); background: #000;">
+        <!-- Google Drive Video Player -->
+        <iframe id="telemetry-iframe" src="https://drive.google.com/file/d/1f2mGrbLvKlv2NT2UlQM5xM_YMMnAzH0-/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================
        POS EVALUATION REPORT MODAL

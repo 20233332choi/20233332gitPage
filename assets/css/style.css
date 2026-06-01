@@ -5,26 +5,28 @@
 
 :root {
   /* HSL Colors */
-  --hue-accent: 195; /* Telemetry Cyan */
-  --hue-accent-alt: 355; /* Racing Hot Red */
+  --hue-accent: 53; /* Red Bull Light Yellow */
+  --hue-accent-alt: 356; /* Red Bull Red (Signature Accent) */
   
   /* HSL Accent Colors */
-  --clr-primary: hsl(var(--hue-accent), 100%, 50%);
-  --clr-primary-glow: hsla(var(--hue-accent), 100%, 50%, 0.35);
-  --clr-accent: hsl(var(--hue-accent-alt), 100%, 55%);
-  --clr-accent-glow: hsla(var(--hue-accent-alt), 100%, 55%, 0.3);
-  --clr-grad: linear-gradient(135deg, var(--clr-primary), var(--clr-accent));
+  --clr-primary: hsl(var(--hue-accent), 100%, 53%); /* Bright Yellow */
+  --clr-primary-glow: hsla(var(--hue-accent), 100%, 53%, 0.35);
+  --clr-accent: hsl(var(--hue-accent-alt), 96%, 45%); /* Bold Red Bull Red */
+  --clr-accent-glow: hsla(var(--hue-accent-alt), 96%, 45%, 0.3);
+  
+  /* Tone-on-tone Yellow Gradient (Light Yellow to Deep Gold) */
+  --clr-grad: linear-gradient(135deg, hsl(53, 100%, 55%), hsl(42, 100%, 46%));
 
-  /* Dark Theme Variables (Default - F1 Pit Wall Style) */
-  --bg-main: hsl(225, 20%, 5%); /* Ultra deep carbon black */
-  --bg-surface: hsla(225, 20%, 10%, 0.72); /* Semi-transparent dark instrumentation panel */
-  --bg-surface-opaque: hsl(225, 20%, 10%);
-  --bg-navbar: hsla(225, 20%, 5%, 0.82);
-  --border-color: hsla(195, 40%, 35%, 0.28); /* Cyber cyan tinted thin borders */
+  /* Dark Theme Variables (Official Red Bull Racing Theme) */
+  --bg-main: hsl(0, 0%, 0%); /* Completely Pure Black */
+  --bg-surface: hsla(220, 60%, 7%, 0.78); /* Official Matte Red Bull Navy */
+  --bg-surface-opaque: hsl(220, 60%, 7%);
+  --bg-navbar: hsla(0, 0%, 0%, 0.85); /* Transparent Pure Black navigation */
+  --border-color: hsla(220, 50%, 25%, 0.35); /* Sleek Navy tinted borders */
   --text-main: hsl(210, 20%, 97%);
   --text-muted: hsl(218, 14%, 73%);
-  --text-inverse: hsl(225, 20%, 5%);
-  --shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.75), 0 0 20px hsla(195, 100%, 50%, 0.05); /* Cyber glow shadow */
+  --text-inverse: hsl(215, 64%, 8%);
+  --shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.95), 0 0 20px hsla(50, 100%, 50%, 0.04); /* Golden/Red Bull subtle shadow */
   --glass-blur: 20px;
 }
 
@@ -46,7 +48,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Targeted Theme transitions to prevent color flash and lag on load */
+body, .navbar, .logo, .nav-links a, .theme-toggle-btn, .btn, .glass-card, .info-card, .timeline-dot, .skill-item, .project-card, .goal-card, .cv-card, .contact-item, .form-control, .footer {
+  transition: background-color 0.4s ease, border-color 0.4s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 html {
@@ -218,7 +224,7 @@ section {
   position: relative;
   background-image: linear-gradient(to bottom, rgba(9, 13, 22, 0.72), rgba(9, 13, 22, 0.88)), url('../images/f1_hero.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: 70% center;
   background-repeat: no-repeat;
 }
 
@@ -229,7 +235,8 @@ section {
 .hero-content {
   text-align: center;
   max-width: 800px;
-  z-index: 2;
+  position: relative;
+  z-index: 5;
 }
 
 .hero-subtitle {
@@ -339,6 +346,33 @@ section {
   0% { top: 6px; opacity: 1; }
   50% { top: 18px; opacity: 0; }
   100% { top: 6px; opacity: 1; }
+}
+
+/* Animating F1 Car in Hero Section (RB19 overlay) */
+.hero-car-container {
+  position: absolute;
+  bottom: 0;
+  right: 5%;
+  width: 45%;
+  max-width: 600px;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.animating-f1-car {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  mix-blend-mode: screen; /* Blends black background seamlessly */
+  opacity: 0;
+  transform: scale(0.85) translateX(100px);
+  transition: transform 1.2s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.2s ease-in-out;
+}
+
+.animating-f1-car.zoom {
+  opacity: 0.95;
+  transform: scale(1) translateX(0);
 }
 
 /* ==========================================
@@ -743,6 +777,90 @@ section {
   margin-top: 1rem;
 }
 
+
+/* SCSS Project Carousel Styles */
+.scss-carousel-container {
+  position: relative;
+  overflow: hidden;
+  height: 340px;
+}
+
+.scss-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  z-index: 1;
+}
+
+.scss-slide.active {
+  opacity: 1;
+  visibility: visible;
+  z-index: 2;
+}
+
+.scss-carousel-controls {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.45);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.scss-carousel-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.scss-carousel-btn:hover {
+  color: var(--clr-primary);
+  transform: scale(1.15);
+}
+
+.scss-carousel-btn svg, .scss-carousel-btn i {
+  width: 16px;
+  height: 16px;
+}
+
+.scss-carousel-indicators {
+  display: flex;
+  gap: 8px;
+}
+
+.scss-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.scss-indicator.active {
+  background-color: var(--clr-primary);
+  transform: scale(1.2);
+}
+
 /* ==========================================
    CV / DOWNLOAD SECTION
    ========================================== */
@@ -1023,6 +1141,33 @@ select.form-control option {
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================== */
 @media (max-width: 992px) {
+  /* Set hero to column layout on smaller screens to allow relative positioned car underneath */
+  .hero {
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 120px;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .hero-car-container {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 90%;
+    margin: 2rem auto 0 auto;
+    max-width: 450px;
+    z-index: 1;
+  }
+
+  .animating-f1-car {
+    transform: scale(0.9) translateY(50px);
+  }
+
+  .animating-f1-car.zoom {
+    transform: scale(1) translateY(0);
+  }
+
   .about-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -1538,5 +1683,46 @@ select.form-control option {
   .toast {
     min-width: 0;
     width: 100%;
+  }
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE OPTIMIZATIONS
+   ========================================== */
+/* Telemetry Demo Video Modal Responsive Layout */
+#telemetry-modal-content {
+  padding: 2.5rem;
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  #telemetry-modal-content {
+    padding: 1.8rem 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #telemetry-modal-content {
+    padding: 1.2rem 0.8rem;
+    width: 95%;
+  }
+}
+
+/* SCSS Project Slider Mobile Optimization */
+@media (max-width: 576px) {
+  .scss-carousel-container {
+    height: 280px;
+  }
+  
+  .scss-carousel-container .mockup-screen {
+    width: 90% !important;
+    height: 60% !important;
+    font-size: 0.62rem !important;
+    padding: 0.5rem !important;
+    margin-top: 0.8rem !important;
+  }
+  
+  .scss-carousel-container .mockup-header {
+    font-size: 1.1rem !important;
   }
 }
