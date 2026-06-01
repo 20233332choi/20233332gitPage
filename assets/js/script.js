@@ -334,7 +334,7 @@ document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons({ root: submitBtn });
 
       // Show loading toast
-      const loadingToast = showToast('메시지를 전송하고 있습니다...', 'loading', 0);
+      const loadingToast = showToast('메시지를 전송하고 있습니다. (약 2~3초 소요)', 'loading', 0);
 
       // Helper function to trigger mailto fallback
       const triggerMailtoFallback = (infoMsg) => {
