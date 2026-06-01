@@ -1764,6 +1764,16 @@ p, li, span, h1, h2, h3, h4, h5 {
   width: 90%;
 }
 
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  background: #000;
+}
+
 @media (max-width: 768px) {
   #telemetry-modal-content {
     padding: 1.8rem 1.4rem;
@@ -1837,5 +1847,10 @@ p, li, span, h1, h2, h3, h4, h5 {
   .hero-btns .btn {
     width: 100%;
     justify-content: center;
+  }
+  
+  .video-container {
+    padding-bottom: 0 !important;
+    height: 240px !important; /* Prevents squishing of Google Drive player on mobile */
   }
 }
