@@ -57,13 +57,29 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Close mobile menu when clicking a link
-  const navLinks = document.querySelectorAll('.nav-links a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      menuIconHam.style.display = 'block';
-      menuIconClose.style.display = 'none';
+  // Close mobile menu and smooth scroll for all internal anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return; // Ignore top anchor
+      
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        e.preventDefault();
+        
+        // Close mobile nav menu if open
+        if (navMenu && navMenu.classList.contains('active')) {
+          navMenu.classList.remove('active');
+          if (menuIconHam) menuIconHam.style.display = 'block';
+          if (menuIconClose) menuIconClose.style.display = 'none';
+        }
+        
+        // Smooth scroll to target
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }
     });
   });
 
