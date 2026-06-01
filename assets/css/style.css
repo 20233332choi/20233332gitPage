@@ -503,8 +503,15 @@ section {
    ========================================== */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem 3.5rem;
+}
+
+@media (max-width: 992px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
 }
 
 .skills-category h3 {
@@ -519,18 +526,20 @@ section {
 .skills-list {
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1rem;
 }
 
 .skill-item {
   width: 100%;
+  min-height: 58px;
   padding: 0.85rem 1.2rem;
-  background-color: hsla(225, 20%, 5%, 0.25);
+  background-color: hsla(225, 20%, 10%, 0.4);
   border: 1px solid var(--border-color);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1.5rem;
 }
 
 [data-theme="light"] .skill-item {
@@ -540,6 +549,8 @@ section {
 .skill-name {
   font-weight: 600;
   font-size: 0.95rem;
+  line-height: 1.4;
+  flex: 1;
 }
 
 /* Skill Badge Styling */
@@ -551,24 +562,41 @@ section {
   text-transform: uppercase;
   letter-spacing: 0.05em;
   border: 1px solid transparent;
+  flex-shrink: 0;
+  text-align: center;
 }
 
 .badge-advanced {
-  background-color: hsla(var(--hue-accent-alt), 100%, 55%, 0.12);
-  color: var(--clr-accent);
-  border-color: hsla(var(--hue-accent-alt), 100%, 55%, 0.22);
+  background-color: hsla(270, 85%, 60%, 0.12); /* Purple */
+  color: hsl(270, 95%, 70%);
+  border-color: hsla(270, 85%, 60%, 0.22);
+}
+[data-theme="light"] .badge-advanced {
+  background-color: hsla(270, 85%, 60%, 0.08);
+  color: hsl(270, 75%, 45%);
+  border-color: hsla(270, 85%, 60%, 0.18);
 }
 
 .badge-intermediate {
-  background-color: hsla(var(--hue-accent), 100%, 50%, 0.12);
-  color: var(--clr-primary);
-  border-color: hsla(var(--hue-accent), 100%, 50%, 0.22);
+  background-color: hsla(145, 85%, 50%, 0.12); /* Green */
+  color: hsl(145, 100%, 45%);
+  border-color: hsla(145, 85%, 50%, 0.22);
+}
+[data-theme="light"] .badge-intermediate {
+  background-color: hsla(145, 85%, 50%, 0.08);
+  color: hsl(145, 80%, 30%);
+  border-color: hsla(145, 85%, 50%, 0.18);
 }
 
 .badge-basic {
-  background-color: hsla(215, 16%, 45%, 0.12);
-  color: var(--text-muted);
-  border-color: hsla(215, 16%, 45%, 0.22);
+  background-color: hsla(45, 95%, 50%, 0.12); /* Yellow */
+  color: hsl(45, 100%, 50%);
+  border-color: hsla(45, 95%, 50%, 0.22);
+}
+[data-theme="light"] .badge-basic {
+  background-color: hsla(40, 95%, 50%, 0.08);
+  color: hsl(35, 85%, 35%);
+  border-color: hsla(40, 95%, 50%, 0.18);
 }
 
 /* ==========================================
