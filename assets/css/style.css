@@ -310,6 +310,12 @@ section {
   transform: translateY(-3px);
 }
 
+#hero-btn-projects,
+#hero-btn-cv {
+  min-width: 240px;
+  justify-content: center;
+}
+
 #hero-btn-cv {
   background: rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.25);
