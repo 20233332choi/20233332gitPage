@@ -727,9 +727,10 @@ section {
   font-family: 'Consolas', monospace;
   font-size: 0.75rem;
   text-align: left;
-  overflow-x: auto;
-  overflow-y: auto;
-  white-space: nowrap;
+  overflow: hidden;
+  white-space: pre-wrap; /* Wraps text naturally at spaces */
+  word-break: normal;
+  overflow-wrap: break-word; /* Prevents word clippings */
   box-shadow: var(--shadow);
   color: hsl(120, 100%, 75%);
 }
@@ -1750,18 +1751,7 @@ p, li, span, h1, h2, h3, h4, h5 {
 }
 
 /* Console Mockup Screen text overflow safeguard */
-/* Console Mockup Screen custom scrollbar styling */
-.mockup-screen::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
-}
-.mockup-screen::-webkit-scrollbar-thumb {
-  background-color: var(--border-color);
-  border-radius: 3px;
-}
-.mockup-screen::-webkit-scrollbar-track {
-  background: transparent;
-}
+/* Console Mockup Screen responsive wrap configurations */
 
 /* Telemetry Demo Video Modal Responsive Layout */
 #telemetry-modal-content {
