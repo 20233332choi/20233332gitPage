@@ -1265,6 +1265,12 @@ select.form-control option {
   .timeline-dot {
     left: -1.9rem;
   }
+
+  .timeline-meta {
+    flex-direction: column;
+    gap: 0.25rem;
+    align-items: flex-start;
+  }
 }
 
 /* ==========================================
@@ -1756,21 +1762,22 @@ p, li, span, h1, h2, h3, h4, h5 {
   }
 }
 
-/* SCSS Project Slider Mobile Optimization */
+/* Project Console Mockup Mobile Optimization */
 @media (max-width: 576px) {
   .scss-carousel-container {
     height: 280px;
   }
   
-  .scss-carousel-container .mockup-screen {
-    width: 90% !important;
-    height: 60% !important;
-    font-size: 0.62rem !important;
-    padding: 0.5rem !important;
-    margin-top: 0.8rem !important;
+  .mockup-screen {
+    width: 92% !important;
+    height: 65% !important;
+    font-size: 0.64rem !important;
+    padding: 0.6rem !important;
+    margin-top: 0.6rem !important;
+    line-height: 1.42 !important;
   }
   
-  .scss-carousel-container .mockup-header {
+  .mockup-header {
     font-size: 1.1rem !important;
   }
 }
