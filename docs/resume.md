@@ -10,7 +10,10 @@
 * **B.S. in Artificial Intelligence Engineering (AI/SW School)**
   * *Period:* Mar. 2023 - Present (2nd Year, including 3-year enrollment period with military leave)
   * *Location:* Gwangju, South Korea
-  * *Relevant Coursework:* Artificial Intelligence, C++ Programming, Introduction to OSS (Open Source Software)
+  * *Relevant Coursework:* Data Structures, C/C++ Programming, Python, Artificial Intelligence, Introduction to OSS (Open Source Software)
+  * *Coursework Details:*
+    * **Data Structures & Algorithms:** Studied fundamental concepts of data organization and core algorithm design to optimize data processing pipelines.
+    * **Programming & Systems Foundations:** Gained essential computer systems and programming knowledge through practical projects in C, C++, and Python, exploring the interface between software programs and computer hardware.
 
 ---
 
