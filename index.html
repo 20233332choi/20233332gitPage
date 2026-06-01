@@ -315,9 +315,9 @@
               target="_blank">
               <i data-lucide="github"></i> Repository
             </a>
-            <button class="btn btn-secondary" id="proj-link-asc-demo">
-              <i data-lucide="play-circle"></i> 데모 영상 보기
-            </button>
+            <a href="./telemetry_demo.html" target="_blank" class="btn btn-secondary" id="proj-link-asc-demo">
+              <i data-lucide="play-circle"></i> 데모 영상 및 분석 보기
+            </a>
           </div>
         </div>
       </div>
@@ -678,54 +678,7 @@
     </div>
   </footer>
 
-  <!-- ==========================================
-       TELEMETRY DEMO VIDEO MODAL
-       ========================================== -->
-  <div class="pos-modal" id="telemetry-demo-modal" aria-hidden="true" role="dialog" aria-labelledby="telemetry-modal-title">
-    <div class="pos-modal-overlay" id="telemetry-modal-overlay"></div>
-    <div class="pos-modal-content glass-card" id="telemetry-modal-content" style="max-width: 800px;">
-      <button class="pos-modal-close" id="telemetry-modal-close-btn" aria-label="닫기">
-        <i data-lucide="x"></i>
-      </button>
-      
-      <h3 class="pos-modal-title" id="telemetry-modal-title" style="margin-bottom: 1.5rem;">
-        <span class="gradient-text">ASC_TLMTSYS 실시간 텔레메트리 데모 영상</span>
-      </h3>
-      
-      <div class="video-container">
-        <!-- Google Drive Video Player -->
-        <iframe id="telemetry-iframe" src="https://drive.google.com/file/d/1f2mGrbLvKlv2NT2UlQM5xM_YMMnAzH0-/preview" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;" allow="autoplay" allowfullscreen></iframe>
-      </div>
-      
-      <!-- 외부 링크로 보기 버튼 (모바일 전용) -->
-      <div class="video-external-btn-container">
-        <a href="https://drive.google.com/file/d/1f2mGrbLvKlv2NT2UlQM5xM_YMMnAzH0-/view?usp=sharing" target="_blank" class="video-external-btn">
-          <i data-lucide="external-link"></i> 새 창에서 원본 영상 보기
-        </a>
-      </div>
-      
-      <!-- 데모 영상 화면 구성 설명 -->
-      <div class="video-description-box">
-        <h4 class="video-desc-title">
-          <i data-lucide="info" style="width: 16px; height: 16px;"></i> 데모 영상 화면 구성
-        </h4>
-        <div class="video-desc-grid">
-          <div class="video-desc-item top-left">
-            <strong>왼쪽 위</strong>
-            <span>플레이어 뷰 (주행 시점)</span>
-          </div>
-          <div class="video-desc-item bottom-left">
-            <strong>왼쪽 아래</strong>
-            <span>중계 카메라 뷰</span>
-          </div>
-          <div class="video-desc-item right">
-            <strong>오른쪽</strong>
-            <span>텔레메트리 프로그램 대시보드</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <!-- ==========================================
        POS EVALUATION REPORT MODAL

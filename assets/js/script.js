@@ -128,48 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const posOverlay = document.getElementById('pos-modal-overlay');
   const closeReportBtn = document.getElementById('pos-modal-close-btn');
 
-  // Telemetry Demo Video Modal
-  const openDemoBtn = document.getElementById('proj-link-asc-demo');
-  const telemetryModal = document.getElementById('telemetry-demo-modal');
-  const telemetryOverlay = document.getElementById('telemetry-modal-overlay');
-  const closeDemoBtn = document.getElementById('telemetry-modal-close-btn');
-  const telemetryVideo = document.getElementById('telemetry-video');
-  const telemetryIframe = document.getElementById('telemetry-iframe');
-
-  if (openDemoBtn && telemetryModal) {
-    openDemoBtn.addEventListener('click', () => {
-      telemetryModal.classList.add('active');
-      telemetryModal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      lucide.createIcons();
-    });
-  }
-
-  function closeTelemetryModal() {
-    if (telemetryModal) {
-      telemetryModal.classList.remove('active');
-      telemetryModal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      
-      // Stop video playback when modal is closed to avoid background sound playing
-      if (telemetryVideo) {
-        telemetryVideo.pause();
-        telemetryVideo.currentTime = 0;
-      }
-      if (telemetryIframe) {
-        const currentSrc = telemetryIframe.src;
-        telemetryIframe.src = '';
-        telemetryIframe.src = currentSrc;
-      }
-    }
-  }
-
-  if (closeDemoBtn) {
-    closeDemoBtn.addEventListener('click', closeTelemetryModal);
-  }
-  if (telemetryOverlay) {
-    telemetryOverlay.addEventListener('click', closeTelemetryModal);
-  }
+  // Telemetry Demo Video is now handled as a standalone subpage (telemetry_demo.html)
 
   if (openReportBtn && posModal) {
     openReportBtn.addEventListener('click', () => {
@@ -201,9 +160,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') {
       if (posModal && posModal.classList.contains('active')) {
         closePosModal();
-      }
-      if (telemetryModal && telemetryModal.classList.contains('active')) {
-        closeTelemetryModal();
       }
     }
   });

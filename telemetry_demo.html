@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASC_TLMTSYS 데모 및 세션 분석 결과 - 최형민</title>
+  
+  <!-- SEO Optimization -->
+  <meta name="description" content="모터스포츠 텔레메트리 데이터 분석 플랫폼 ASC_TLMTSYS의 실시간 데모 영상과 정밀 주행 로그 및 AI 분석 화면 스크린샷 12종을 상세 설명과 함께 제공합니다.">
+  <meta name="author" content="최형민">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="assets/css/style.css?v=1.0.2">
+
+  <style>
+    /* ==========================================
+       SUBPAGE BRANDING & CUSTOM STYLE
+       ========================================== */
+    .demo-page {
+      padding-top: 120px;
+      padding-bottom: 6rem;
+      min-height: 100vh;
+      background-color: var(--bg-main);
+    }
+    
+    .demo-header {
+      margin-bottom: 3.5rem;
+      text-align: center;
+    }
+    
+    .demo-back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--clr-primary);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+    
+    .demo-back-btn:hover {
+      color: var(--text-main);
+      transform: translateX(-4px);
+    }
+    
+    /* Cinema-style Video Player Wrapper */
+    .demo-video-wrapper {
+      max-width: 950px;
+      margin: 0 auto 5rem auto;
+      background: var(--bg-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .demo-video-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Outfit', sans-serif;
+      color: var(--text-main);
+    }
+    
+    .cinema-player {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      border: 1px solid var(--border-color);
+      background: #000;
+      box-shadow: 0 25px 55px rgba(0, 0, 0, 0.4);
+    }
+    
+    .cinema-player iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    
+    .video-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.8rem;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    
+    .video-actions .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+    }
+    
+    .video-note {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    
+    /* Photo Gallery Grid Layout */
+    .gallery-section {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .gallery-section-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-align: center;
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .gallery-subtitle {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 3.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    
+    .gallery-card {
+      background: var(--bg-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--clr-primary);
+      box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.45), 0 0 20px hsla(53, 100%, 53%, 0.12);
+    }
+    
+    .gallery-img-box {
+      width: 100%;
+      height: 320px;
+      overflow: hidden;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #0b0d19;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .gallery-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .gallery-card:hover .gallery-img-box img {
+      transform: scale(1.03);
+    }
+    
+    .img-zoom-hint {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      color: #fff;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.72rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      opacity: 0;
+      transform: translateY(5px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+      font-weight: 500;
+    }
+    
+    .gallery-img-box:hover .img-zoom-hint {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .gallery-info {
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    
+    .gallery-card-num {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--clr-accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.6rem;
+    }
+    
+    .gallery-card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: var(--text-main);
+      line-height: 1.4;
+    }
+    
+    .gallery-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    
+    /* ==========================================
+       LIGHTBOX ZOOM VIEWPORT
+       ========================================== */
+    .lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(4, 5, 10, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    .lightbox.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    
+    .lightbox-content {
+      max-width: 90%;
+      max-height: 90%;
+      position: relative;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .lightbox.active .lightbox-content {
+      transform: scale(1);
+    }
+    
+    .lightbox-img {
+      width: auto;
+      height: auto;
+      max-width: 100%;
+      max-height: 75vh;
+      border-radius: 12px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      object-fit: contain;
+    }
+    
+    .lightbox-caption {
+      color: #fff;
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: 'Outfit', sans-serif;
+    }
+    
+    .lightbox-desc {
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.88rem;
+      max-width: 600px;
+      line-height: 1.5;
+    }
+    
+    .lightbox-close {
+      position: absolute;
+      top: -45px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      transition: transform 0.2s;
+    }
+    
+    .lightbox-close:hover {
+      transform: scale(1.15);
+    }
+    
+    /* ==========================================
+       RESPONSIVE MEDIA QUERIES
+       ========================================== */
+    @media (max-width: 992px) {
+      .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      
+      .gallery-img-box {
+        height: 280px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .demo-page {
+        padding-top: 100px;
+      }
+      
+      .demo-video-wrapper {
+        padding: 1.5rem;
+        margin-bottom: 3.5rem;
+      }
+      
+      .cinema-player {
+        padding-bottom: 0;
+        height: 280px;
+      }
+      
+      .gallery-section-title {
+        font-size: 1.8rem;
+      }
+      
+      .gallery-img-box {
+        height: 220px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .cinema-player {
+        height: 200px;
+      }
+      
+      .gallery-info {
+        padding: 1.2rem;
+      }
+      
+      .gallery-img-box {
+        height: 180px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ==========================================
+       NAVIGATION BAR (STANDALONE SUBPAGE HEADER)
+       ========================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">Hyeongmin<span class="gradient-text">.Choi</span></a>
+
+      <button class="theme-toggle-btn" id="theme-toggle" aria-label="화면 테마 변경">
+        <i data-lucide="sun" id="theme-icon-sun" style="display: none;"></i>
+        <i data-lucide="moon" id="theme-icon-moon"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT SECTION
+       ========================================== -->
+  <main class="demo-page">
+    <div class="container">
+      
+      <div class="demo-header">
+        <a href="index.html#projects" class="demo-back-btn">
+          <i data-lucide="arrow-left"></i> 포트폴리오로 돌아가기
+        </a>
+        <h2 class="section-title"><span class="gradient-text">ASC_TLMTSYS</span> 실시간 텔레메트리</h2>
+      </div>
+
+      <!-- cinema style video card -->
+      <div class="demo-video-wrapper">
+        <h3 class="demo-video-title">
+          <i data-lucide="play-circle" style="color: var(--clr-primary);"></i> 실시간 시뮬레이션 데이터 수집 및 연동 데모 영상
+        </h3>
+        
+        <div class="cinema-player">
+          <iframe src="https://drive.google.com/file/d/1f2mGrbLvKlv2NT2UlQM5xM_YMMnAzH0-/preview" allow="autoplay" allowfullscreen></iframe>
+        </div>
+        
+        <div class="video-actions">
+          <a href="https://drive.google.com/file/d/1f2mGrbLvKlv2NT2UlQM5xM_YMMnAzH0-/view?usp=sharing" target="_blank" class="btn btn-primary">
+            <i data-lucide="external-link"></i> 새 창에서 원본 영상 전체 화면으로 시청
+          </a>
+          <span class="video-note">
+            <i data-lucide="monitor"></i> 영상에 마우스를 대고 재생 버튼을 누르시면 시뮬레이터 주행 연동을 확인할 수 있습니다.
+          </span>
+        </div>
+      </div>
+
+      <!-- Photo Gallery section -->
+      <section class="gallery-section">
+        <h3 class="gallery-section-title">데이터 분석창 세션 로그 및 리포트</h3>
+        <p class="gallery-subtitle">주행 정보의 실시간 트래킹 결과와 세분화된 물리 파라미터 및 인공지능이 도출한 차량 셋업 및 드라이버 교정 분석 결과물입니다.</p>
+        
+        <div class="gallery-grid">
+          
+          <!-- Card 1 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_1.png', '01. 프로그램의 첫 화면', '텔레메트리 시스템 실행 시 처음 나타나는 게이트웨이 및 소켓 연결 대기 화면입니다.')">
+              <img src="assets/images/telemetry_1.png" alt="프로그램의 첫 화면">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 01</span>
+              <h4 class="gallery-card-title">프로그램의 첫 화면</h4>
+              <p class="gallery-card-desc">텔레메트리 시스템 기동 시 데이터 프레임워크 초기화 후 소켓 포트 개방 및 패킷 수신 대기 상태를 나타내는 진입점 화면입니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_2.png', '02. 분석창의 Summary 화면', '차량 상태, 랩타임 기록, 드라이버 세션 정보 등 전체적인 핵심 지표를 한눈에 볼 수 있도록 요약 제공합니다.')">
+              <img src="assets/images/telemetry_2.png" alt="분석창의 Summary 화면">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 02</span>
+              <h4 class="gallery-card-title">분석창의 Summary 화면</h4>
+              <p class="gallery-card-desc">해당 세션 주행의 전체적인 정보를 요약하여 제공합니다. 총 주행 거리, 최고 속도, 랩 타임 분포 및 전반적인 통계를 한눈에 식별할 수 있습니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_3.png', '03. 세션 및 랩별 정보 선택', '저장된 개별 주행 세션과 특정 랩(Lap) 데이터를 필터링하고 분석 대상으로 손쉽게 로드하는 선택 인터페이스입니다.')">
+              <img src="assets/images/telemetry_3.png" alt="세션 및 랩별 정보 선택">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 03</span>
+              <h4 class="gallery-card-title">세션 및 랩별 정보 선택</h4>
+              <p class="gallery-card-desc">타임스탬프와 주행 트랙별로 분류 저장된 전체 데이터 로그에서 원하는 세션과 특정 랩(Lap)을 선택하여 즉시 분석 타겟으로 불러오는 내비게이터 툴입니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_4.png', '04. 주행 라인, 섹터 및 휠락포인트 정보', 'GPS/가속도 기반 주행 라인 맵과 함께 섹터 타임 및 제동 시 타이어 잠김(Wheel Lock)이 발생한 위험 지점을 시각화합니다.')">
+              <img src="assets/images/telemetry_4.png" alt="주행 라인, 섹터 및 휠락포인트 정보">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 04</span>
+              <h4 class="gallery-card-title">주행 라인, 섹터 및 휠락포인트 정보</h4>
+              <p class="gallery-card-desc">드라이버가 주행한 궤적과 구간별 섹터 타임을 표시합니다. 감속 과정에서 브레이크 입력 초과로 인해 바퀴가 완전히 고정된 채 미끄러진 휠락(Wheel Lock) 발생 구간을 붉은 점으로 표시하여 라인 교정을 지원합니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_5.png', '05. 실시간 저장 정보 열람 1', '가속/감속 분석 및 변속 타이밍 검증을 위해 누적된 정밀 물리량 시계열 데이터를 그리드 표 형태로 열람합니다.')">
+              <img src="assets/images/telemetry_5.png" alt="실시간 저장 정보 열람 1">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 05</span>
+              <h4 class="gallery-card-title">실시간 저장 정보 열람 1 (RPM, GEAR, Throttle)</h4>
+              <p class="gallery-card-desc">시간 경과 및 주행 거리에 따른 RPM의 순간 도달 속도, 선택 기어 단수, 가속 페달 전개율(Throttle %) 등 AI 알고리즘의 분석 원천이 되는 물리 시계열 로우 데이터를 구조적 표로 확인합니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_6.png', '06. 실시간 저장 정보 열람 2', '서스펜션 로드, 타이어 온도 등 주행 데이터의 세세한 피드백을 추가로 확인할 수 있는 데이터 분석 테이블입니다.')">
+              <img src="assets/images/telemetry_6.png" alt="실시간 저장 정보 열람 2">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 06</span>
+              <h4 class="gallery-card-title">실시간 저장 정보 열람 2 (물리량 상세)</h4>
+              <p class="gallery-card-desc">차량 서스펜션 로드 센서 데이터, 4륜 타이어의 Core/Surface 온도 분포, 차량에 인가되는 순간 종/횡 G-force 등 차량의 거동 해석을 위한 핵심 연산 데이터 테이블입니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 7 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_7.png', '07. AI 분석 결과 1 (종합 정보 분석)', '현재 세션의 차량 셋업 특성 및 트랙 마찰 상태, 드라이버 주행 성향을 반영한 1차 예측 분석 보고서입니다.')">
+              <img src="assets/images/telemetry_7.png" alt="AI 분석 결과 1 (종합 정보 분석)">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 07</span>
+              <h4 class="gallery-card-title">AI 분석 결과 1 (종합 분석)</h4>
+              <p class="gallery-card-desc">주행 중 축적된 데이터를 정규화하여 현 시점 드라이버의 제동 효율, 코너 진입 속도 마진, 차량 밸런스 불안 요소를 다각도로 진단하여 보여주는 인텔리전트 AI 피드백 1단계 리포트입니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 8 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_8.png', '08. AI 분석 결과 2 (종합 정보 분석)', '코너별 조향각 및 가감속 타이밍 피드백을 통해 랩타임 단축 경로를 도출하는 가이드 화면입니다.')">
+              <img src="assets/images/telemetry_8.png" alt="AI 분석 결과 2 (종합 정보 분석)">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 08</span>
+              <h4 class="gallery-card-title">AI 분석 결과 2 (코너 거동 피드백)</h4>
+              <p class="gallery-card-desc">세밀한 차속 변화와 코너 곡률 반경 정보를 비교 분석하여 가속 페달을 조기 전개할 수 있는 트랙션 최적 구간을 제시하고 주행 성능 향상을 지원합니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 9 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_9.png', '09. AI 분석 결과 3 (종합 정보 분석)', '타이어 Core/Surface 온도 추이 및 서스펜션 반응 속도를 바탕으로 한 타이어 마모 예측 데이터입니다.')">
+              <img src="assets/images/telemetry_9.png" alt="AI 분석 결과 3 (종합 정보 분석)">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 09</span>
+              <h4 class="gallery-card-title">AI 분석 결과 3 (차량 역학 피드백)</h4>
+              <p class="gallery-card-desc">과도한 코너링 슬립각(Slip Angle) 및 롤링 레이트를 감지하여 오버스티어/언더스티어가 유발된 주행 기록을 분류하고 오차 범위를 리포트합니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 10 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_10.png', '10. AI 분석 결과 4 (종합 정보 분석)', '타임 트라이얼과 비교하여 제동 시점 지연 및 코너링 라인 개선 여지를 도출하는 상세 정량 분석입니다.')">
+              <img src="assets/images/telemetry_10.png" alt="AI 분석 결과 4 (종합 정보 분석)">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 10</span>
+              <h4 class="gallery-card-title">AI 분석 결과 4 (제동 패턴 분석)</h4>
+              <p class="gallery-card-desc">브레이크 제어 압력 파형(Brake Pressure Profile)을 템플릿 주행 데이터와 비교하여 제동 포인트 돌입 지연율 및 브레이크 릴리즈(Trail Braking) 조절 완성도를 연산합니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 11 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_11.png', '11. AI 분석 결과 5 (종합 정보 분석)', '주행 완성도 점수(Driver Rating)와 섹션별 권장 최적 셋업 값을 요약한 종합 리포트입니다.')">
+              <img src="assets/images/telemetry_11.png" alt="AI 분석 결과 5 (종합 정보 분석)">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 11</span>
+              <h4 class="gallery-card-title">AI 분석 결과 5 (주행 종합 개선 리포트)</h4>
+              <p class="gallery-card-desc">차량의 하체 기하학적 셋업 변경(캠버, 토인 등) 가이드와 드라이버의 악셀 오프 윈도우 조절 타이밍 가이드를 합성한 최종 셋업 솔루션을 보여줍니다.</p>
+            </div>
+          </div>
+
+          <!-- Card 12 -->
+          <div class="gallery-card">
+            <div class="gallery-img-box" onclick="openLightbox('assets/images/telemetry_12.png', '12. 정보 분석창의 전체적 모습', '실시간 원격 분석과 물리 로그 추적, AI 어드바이저 피드백이 실시간으로 조화롭게 어우러진 분석창의 전체 레이아웃입니다.')">
+              <img src="assets/images/telemetry_12.png" alt="정보 분석창의 전체적 모습">
+              <div class="img-zoom-hint"><i data-lucide="zoom-in"></i> 크게 보기</div>
+            </div>
+            <div class="gallery-info">
+              <span class="gallery-card-num">Step 12</span>
+              <h4 class="gallery-card-title">정보 분석창의 전체적 모습</h4>
+              <p class="gallery-card-desc">비동기 소켓 리시버, 주행 맵 트래커, 시계열 물리 데이터 그리드, AI 실시간 가이드보드가 한곳에 유기적으로 통합 정렬된 분석 시스템 메인 윈도우입니다.</p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ==========================================
+       LIGHTBOX VIEWPORT MODAL
+       ========================================== -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" onclick="closeLightbox()">
+    <div class="lightbox-content" onclick="event.stopPropagation()">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="닫기">
+        <i data-lucide="x" style="width: 28px; height: 28px;"></i>
+      </button>
+      <img class="lightbox-img" id="lightbox-img" src="" alt="확대 이미지">
+      <h3 class="lightbox-caption" id="lightbox-caption">이미지 제목</h3>
+      <p class="lightbox-desc" id="lightbox-desc">상세 설명</p>
+    </div>
+  </div>
+
+  <!-- Lucide Icons & Theme Toggler Initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Create icons
+      lucide.createIcons();
+
+      // Theme toggle implementation
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const sunIcon = document.getElementById('theme-icon-sun');
+      const moonIcon = document.getElementById('theme-icon-moon');
+      const htmlElement = document.documentElement;
+
+      const savedTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const initialTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+
+      setTheme(initialTheme);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const currentTheme = htmlElement.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        setTheme(newTheme);
+        
+        // Broadcast theme change to other windows if needed
+        localStorage.setItem('theme', newTheme);
+      });
+
+      function setTheme(theme) {
+        htmlElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+
+        if (theme === 'dark') {
+          if (sunIcon) sunIcon.style.display = 'none';
+          if (moonIcon) moonIcon.style.display = 'block';
+        } else {
+          if (sunIcon) sunIcon.style.display = 'block';
+          if (moonIcon) moonIcon.style.display = 'none';
+        }
+      }
+    });
+
+    /* ==========================================
+       LIGHTBOX EVENT HANDLERS
+       ========================================== */
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCaption = document.getElementById('lightbox-caption');
+    const lightboxDesc = document.getElementById('lightbox-desc');
+
+    function openLightbox(imgSrc, title, desc) {
+      if (!lightbox || !lightboxImg) return;
+      lightboxImg.src = imgSrc;
+      lightboxCaption.textContent = title;
+      lightboxDesc.textContent = desc;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      if (!lightbox) return;
+      lightbox.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Escape Key Handler for Lightbox
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
+</body>
+
+</html>
