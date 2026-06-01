@@ -1824,9 +1824,41 @@ p, li, span, h1, h2, h3, h4, h5 {
   font-weight: 600;
 }
 
+.video-external-btn-container {
+  margin-top: 1rem;
+  display: none; /* Hidden on desktop */
+}
+
+.video-external-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.85rem 1.2rem;
+  background-color: hsla(220, 30%, 15%, 0.8);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  color: var(--text-main);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.video-external-btn:hover {
+  background-color: var(--clr-primary-glow);
+  border-color: var(--clr-primary);
+  color: var(--text-inverse);
+}
+
 @media (max-width: 768px) {
   #telemetry-modal-content {
     padding: 1.8rem 1.4rem;
+  }
+  
+  .video-external-btn-container {
+    display: block; /* Show external video button on mobile/tablets */
   }
 }
 
@@ -1901,6 +1933,6 @@ p, li, span, h1, h2, h3, h4, h5 {
   
   .video-container {
     padding-bottom: 0 !important;
-    height: 240px !important; /* Prevents squishing of Google Drive player on mobile */
+    height: 300px !important; /* Increased height to make the Google Drive play button easier to tap on mobile */
   }
 }
