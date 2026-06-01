@@ -411,7 +411,9 @@ section {
 .about-img-box {
   position: relative;
   width: 320px;
-  height: 320px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  height: auto;
   border-radius: 24px;
   overflow: hidden;
 }
