@@ -302,10 +302,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const nameVal = document.getElementById('form-name').value.trim();
       const emailVal = document.getElementById('form-email').value.trim();
+      const typeVal = document.getElementById('form-type').value;
       const messageVal = document.getElementById('form-message').value.trim();
+      const consentChecked = document.getElementById('form-consent').checked;
 
-      if (!nameVal || !emailVal || !messageVal) {
+      // Basic empty field checks
+      if (!nameVal || !emailVal || !typeVal || !messageVal) {
         showToast('모든 필드를 입력해 주세요.', 'error');
+        return;
+      }
+
+      // Email validation (Regex)
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailVal)) {
+        showToast('올바른 이메일 형식을 입력해 주세요.', 'error');
+        return;
+      }
+
+      // Consent check validation
+      if (!consentChecked) {
+        showToast('개인정보 수집 및 이용에 동의해 주세요.', 'error');
         return;
       }
 
@@ -326,8 +342,8 @@ document.addEventListener('DOMContentLoaded', () => {
         showToast(infoMsg, 'info', 5000);
 
         const emailRecipient = 'gudals6234@chosun.ac.kr';
-        const subject = encodeURIComponent(`[Portfolio Contact] ${nameVal}님으로부터의 메시지`);
-        const body = encodeURIComponent(`보낸 사람: ${nameVal}\n이메일: ${emailVal}\n\n내용:\n${messageVal}`);
+        const subject = encodeURIComponent(`[Portfolio Contact] ${nameVal}님으로부터의 메시지 (${typeVal})`);
+        const body = encodeURIComponent(`보낸 사람: ${nameVal}\n이메일: ${emailVal}\n문의 유형: ${typeVal}\n동의 여부: 동의 완료\n\n내용:\n${messageVal}`);
         
         // Open email client
         window.location.href = `mailto:${emailRecipient}?subject=${subject}&body=${body}`;
@@ -358,8 +374,10 @@ document.addEventListener('DOMContentLoaded', () => {
             access_key: WEB3FORMS_ACCESS_KEY,
             name: nameVal,
             email: emailVal,
-            subject: `[Portfolio Contact] ${nameVal}님으로부터의 메시지`,
-            message: messageVal
+            inquiry_type: typeVal,
+            subject: `[Portfolio Contact] ${nameVal}님으로부터의 메시지 (${typeVal})`,
+            message: messageVal,
+            consent_agreed: '동의 완료'
           })
         });
 

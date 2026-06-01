@@ -608,9 +608,33 @@
           </div>
 
           <div class="form-group">
+            <label for="form-type">Inquiry Type (문의 유형)</label>
+            <select id="form-type" class="form-control" required>
+              <option value="" disabled selected hidden>문의 유형을 선택해 주세요.</option>
+              <option value="채용 제안">채용 제안 (Job Offer)</option>
+              <option value="프로젝트 협업 문의">프로젝트 협업 문의 (Project Collaboration)</option>
+              <option value="기타 문의">기타 문의 (General Inquiry)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
             <label for="form-message">Message</label>
             <textarea id="form-message" class="form-control" rows="5" placeholder="메시지 내용을 입력해 주세요."
               required></textarea>
+          </div>
+
+          <div class="form-group consent-group">
+            <div class="consent-checkbox-wrapper">
+              <input type="checkbox" id="form-consent" required>
+              <label for="form-consent">개인정보 수집 및 이용에 동의합니다. <span style="color: var(--clr-accent);">*</span></label>
+            </div>
+            <div class="form-consent-box">
+              <p><strong>[개인정보 수집 및 이용 동의 안내]</strong></p>
+              <p>1. 수집하는 개인정보 항목: 성함/기업명, 이메일 주소, 문의 내용</p>
+              <p>2. 개인정보 수집 및 이용 목적: 포트폴리오 방문자 문의 접수 및 답변 발송</p>
+              <p>3. 개인정보 보유 및 이용 기간: 목적 달성 시 즉시 파기 또는 접수 후 6개월 보관 후 파기</p>
+              <p>귀하는 동의를 거부할 권리가 있으며, 동의 거부 시 문의 접수가 제한될 수 있습니다.</p>
+            </div>
           </div>
 
           <button type="submit" class="btn btn-primary" id="form-submit-btn"
