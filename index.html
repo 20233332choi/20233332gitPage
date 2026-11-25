@@ -265,78 +265,8 @@
        4. PROJECTS SECTION
        ========================================== -->
   <section class="container" id="projects">
-    <h2 class="section-title fade-in-up">Projects</h2>
+    <h2 class="section-title fade-in-up">대표 프로젝트</h2>
     <div class="projects-grid">
-
-      <article class="project-card glass-card fade-in-up" id="project-djy-evtqv">
-        <div class="project-img-container"><img src="assets/images/djy-power.png" width="960" height="520" loading="lazy" style="width:100%;height:auto;display:block" alt="풀페달 호스트 시험에서 직진은 좌우 10·10 kW, 차동 개입은 6·10 kW를 명령한다."></div>
-        <div class="project-details">
-          <span class="project-period">진행 중 · 2026. 11 업데이트</span>
-          <h3 class="project-title">DJY_EVTQV · 전기 자작차 토크벡터링</h3>
-          <p class="project-summary">조향각과 실제 요레이트를 바탕으로 좌우 모터의 출력 명령을 배분하고, 피트에서 차량 상태와 제어 설정을 확인하는 시스템입니다.</p>
-          <ul class="project-features">
-            <li><strong>구동 제어</strong> · 직진 시 최대 20 kW를 요구하고, 한쪽 모터가 상한에 닿으면 반대쪽 출력을 줄여 풀페달에서도 차동을 유지합니다. 출력 배분·피트 설정·통신 관련 호스트 테스트 14개를 통과했습니다.</li>
-            <li><strong>텔레메트리</strong> · 후방 STM32가 보낸 데이터를 ESP32-S3에서 수신해 Wi-Fi 또는 HTTPS로 피트에 전달합니다.</li>
-            <li><strong>현장 설정</strong> · 휴대폰에서 핫스팟을 변경하고 재부팅 후에도 설정을 유지하도록 구현했습니다. 기존 핫스팟에 연결할 수 없을 때는 BOOT 버튼으로 설정용 Wi-Fi를 엽니다.</li>
-            <li><strong>검증 진행 중</strong> · Wi-Fi 설정 기능을 포함한 ESP32-S3 R8 펌웨어 빌드를 완료했습니다. 보드 업로드와 휴대폰 접속 시험, 차량의 실제 출력 측정이 남아 있습니다.</li>
-          </ul>
-          <div class="project-tech"><span class="tech-tag">STM32</span><span class="tech-tag">ESP32-S3</span><span class="tech-tag">C / C++</span><span class="tech-tag">CAN · UART</span></div>
-        </div>
-      </article>
-
-      <!-- Project 1: ASC_TLMTSYS (Motorsport Telemetry System) -->
-      <div class="project-card glass-card fade-in-up" id="project-asc-tlmtsys">
-        <div class="project-img-container">
-          <div class="project-img-box">
-            <div class="project-visual-mockup"
-              style="background: linear-gradient(135deg, hsl(220, 80%, 12%), hsl(225, 25%, 8%));">
-              <div class="mockup-header" style="color: hsl(200, 90%, 55%);">ASC_TLMTSYS Console & Dash</div>
-              <div class="mockup-screen" style="color: hsl(200, 100%, 75%); border-color: hsla(200, 80%, 50%, 0.3); overflow-y: hidden; font-size: 0.78rem;"><span style="color:#ffffff;">$ python app.py</span><br />
-<span style="color:#00B894;">INFO: Uvicorn running on http://127.0.0.1:8000</span><br />
-<span style="color:#00B894;">[Server] UDP 텔레메트리 서버 연결됨 (포트 8001)</span><br />
-<span>[API] POST /api/telemetry/start -> <span style="color:#00B894;">200 OK</span></span><br />
-<span>[F1 Pit Wall] GEAR: <span style="color:#fff; font-weight:bold;">3</span> | Speed: <span style="color:#00e676; font-weight:bold;">106 km/h</span> | RPM: <span style="color:#f1c40f;">1586</span></span><br />
-<span>[Physics] Tyre Core Temp: <span style="color:#ff7675;">81.7°C</span> | Brake Temp: <span style="color:#ff7675;">417°C</span></span><br />
-<span style="color:#20b2aa;">[Telemetry] Suspension load / G-force vector sync complete</span></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="project-details">
-          <span class="project-period">2026. 04 - 현재 (진행 중)</span>
-          <h3 class="project-title">ASC_TLMTSYS</h3>
-          <p class="project-summary">시뮬레이션 및 실차 환경 통합형 실시간 F1 Pit Wall 스타일 텔레메트리 데이터 분석 플랫폼</p>
-          <p class="project-roles"><strong>본인 역할:</strong> 1인 독자 개발 (개인 프로젝트)</p>
-
-          <ul class="project-features">
-            <li><strong>FastAPI & Uvicorn (포트 8000)</strong> 기반의 고성능 비동기 웹서버 및 데이터 파이프라인 아키텍처 설계</li>
-            <li><strong>UDP 소켓 통신 (포트 8001)</strong> 리스너를 구현하여 시뮬레이션 환경으로부터 실시간 물리 센서 패킷 저지연 수집</li>
-            <li><strong>F1 Pit Wall Control 대시보드</strong> 구현: 실시간 속도, RPM, 기어 변속(GEAR), 종/횡 G-Force 벡터 시각화</li>
-            <li><strong>상세 차량 기하학 모니터링:</strong> 타이어 Core 온도(81.7°C), I/M/O(내/중/외) 온도 분포, 브레이크 온도(417°C), 서스펜션 트래블/로드 분석
-            </li>
-            <li><strong>차량 서브시스템 연동:</strong> ERS 배터리 충방전 상태 모니터링 및 DRS 잠금 해제/LOCKED 상태 실시간 트래킹</li>
-            <li><strong>하드웨어 연동 로드맵:</strong> 동아리 자작 자동차의 실시간 CAN 데이터 수집을 위한 센서 데이터 융합 프레임워크 확장 개발 진행 중</li>
-          </ul>
-
-          <div class="project-tech">
-            <span class="tech-tag">C++</span>
-            <span class="tech-tag">Socket Programming</span>
-            <span class="tech-tag">Data Structures</span>
-            <span class="tech-tag">Telemetry API</span>
-            <span class="tech-tag">Python (Analytics)</span>
-          </div>
-
-          <div class="project-links">
-            <a href="https://github.com/20233332choi/ASC_TLMTSYS" class="btn btn-primary" id="proj-link-asc-git"
-              target="_blank">
-              <i data-lucide="github"></i> Repository
-            </a>
-            <a href="./telemetry_demo.html" target="_blank" class="btn btn-secondary" id="proj-link-asc-demo">
-              <i data-lucide="play-circle"></i> 데모 영상 및 분석 보기
-            </a>
-          </div>
-        </div>
-      </div>
 
       <!-- Project 2: SCSS v2.0 (Unmanned Check-in System) -->
       <div class="project-card glass-card fade-in-up" id="project-scss">
@@ -381,7 +311,7 @@
         <div class="project-details">
           <span class="project-period">2025. 01 - 2026. 04 (실제 상시 운용 중)</span>
           <h3 class="project-title">SCSS (Self Check-in Integrated System)</h3>
-          <p class="project-summary">군 복지시설(상승레스텔)의 무인 프런트 및 통합 객실 관리 자동화 시스템</p>
+          <p class="project-summary">군 복지시설 상승레스텔의 체크인과 객실 관리를 자동화했습니다. 체계화된 운영 매뉴얼과 간편한 배포 절차 덕분에 담당자가 바뀌어도 현재까지 운용하고 있습니다.</p>
           <p class="project-roles"><strong>본인 역할:</strong> 1인 총괄 개발자 / 아키텍트 (군 시절 일병 독자 개발)</p>
 
           <ul class="project-features">
@@ -415,6 +345,15 @@
           </div>
         </div>
       </div>
+
+      <article class="project-card glass-card fade-in-up" id="project-ev">
+        <div class="project-img-container"><img src="assets/images/ev-session-rpm.png" width="960" height="520" style="width:100%;height:auto" alt="EV 주행 세션 6에서 기록한 시간별 좌우 모터 RPM"></div>
+        <div class="project-details"><span class="project-period">실차 주행 검증 완료</span>
+          <h3 class="project-title">DJY EV 텔레메트리</h3>
+          <p class="project-summary">전기 자작차에서 좌우 모터 RPM, 조향각, 요레이트, 배터리 상태를 함께 기록하고 피트에서 주행을 복기하는 시스템입니다.</p>
+          <p class="project-roles">제가 개발한 아세토 코르사 텔레메트리와 조선대학교 IT융합대학 전자공학과 이준혁의 바하 텔레메트리를 계승했습니다. 실차에서 수집한 데이터를 바탕으로 개선점을 반영하며 팀의 토크벡터링 완성에 기여했습니다.</p>
+          <div class="project-links"><a class="btn btn-secondary" href="projects.html#lineage" target="_blank" rel="noopener">개발 계보와 참여자 보기 ↗</a></div>
+        </div></article>
 
       <!-- Project 3: Honam-Univ.-POS (Festival Real-Time POS & Order System) -->
       <div class="project-card glass-card fade-in-up" id="project-honam-pos">
@@ -475,6 +414,7 @@
       </div>
 
     </div>
+    <a class="btn btn-primary" href="projects.html" target="_blank" rel="noopener">전체 프로젝트 보기 ↗</a>
   </section>
 
   <!-- ==========================================

@@ -1,0 +1,16 @@
+<!doctype html><html lang="ko" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>전체 프로젝트 | 최형민</title><link rel="stylesheet" href="assets/css/style.css"><style>main{max-width:960px;margin:auto;padding:3rem 5vw}h1{margin:2rem 0}h2{margin:3rem 0 1rem}article{padding:1.5rem 0;border-bottom:1px solid #49545f}article p{margin:.6rem 0;line-height:1.7}main a{text-decoration:underline;text-underline-offset:.2em}article img{max-width:100%;height:auto;margin-top:1rem}</style></head><body><main><a href="index.html#projects">← 대표작으로 돌아가기</a><h1>전체 프로젝트</h1>
+<h2 id="lineage">시뮬레이터에서 실차까지</h2>
+<article><h3>아세토 코르사 텔레메트리 · ASC_TLMTSYS</h3><p>시뮬레이터의 UDP 데이터를 수집해 피트 화면에서 속도, 기어, 타이어 상태를 읽도록 만든 개인 프로젝트입니다. 이후 실차 텔레메트리 개발의 기반이 됐습니다.</p><a href="telemetry_demo.html">데모와 주행 분석</a> · <a href="https://github.com/20233332choi/ASC_TLMTSYS">저장소</a></article>
+<article><h3>바하 텔레메트리</h3><p>조선대학교 IT융합대학 전자공학과 이준혁이 개발한 DJY_speedmeter를 계승해 바하 텔레메트리를 진행했습니다. 이 작업은 아세토 코르사 프로젝트와 함께 EV 텔레메트리로 이어졌습니다.</p><a href="https://github.com/JunhyukIEE/DJY_speedmeter">이준혁의 원작 DJY_speedmeter</a> · <a href="https://github.com/20233332choi/DJY-BAJA-_TLMTSYS">바하 후속 프로젝트</a></article>
+<article><h3>DJY EV 텔레메트리 · 실전 검증 완료</h3><p>후방 STM32, ESP32, BMS와 휴대폰 GPS의 데이터를 수집·저장합니다. 피트에서 주행 기록을 분석해 토크벡터링 개선에 활용했습니다.</p><a href="index.html#project-ev">실차 RPM 기록 보기</a></article>
+<article id="project-djy-evtqv"><h3>DJY_EVTQV · 토크벡터링 개선 참여</h3><p>토크벡터링에는 조선대학교 공과대학 전기공학과 박성우, 정민기, 오하은, 황주헌이 참여했습니다. 제 역할은 EV 텔레메트리로 주행 데이터를 확보하고 팀의 제어 시스템에 개선점을 반영하는 일이었습니다.</p><p>아래 그림은 개선한 출력 배분 로직의 호스트 시험 예시입니다. 20 kW는 좌우 합계 출력 명령값이며, 이 설정의 실차 출력 측정은 남아 있습니다.</p><img src="assets/images/djy-power.png" width="640" height="347" loading="lazy" alt="풀페달 호스트 시험에서 직진은 10+10 kW, 차동 개입은 6+10 kW"></article>
+<h2>차량 개발 도구와 진행 중인 작업</h2>
+<article><h3>ESP32 현장 Wi-Fi 설정</h3><p>휴대폰에서 차량 게이트웨이의 핫스팟 정보를 바꾸고, 연결이 끊겨도 보드 버튼으로 설정을 복구할 수 있도록 구현했습니다. ESP32-S3 R8 빌드 완료 후 보드 적용과 휴대폰 접속 시험을 앞두고 있습니다.</p></article>
+<article><h3>ESP 펌웨어 업로더</h3><p>Windows에서 USB 포트를 검색하고 ESP32-S3 칩의 응답을 확인해 업로드 대상을 선택하는 도구입니다.</p></article>
+<article><h3>주행 데이터 분석 · EVDATA</h3><p>EV 주행 세션별 CSV와 검증 스크립트를 관리합니다. 대표작의 좌우 RPM 그래프는 이 중 여섯 번째 세션의 기록으로 작성했습니다.</p></article>
+<article><h3>가상 배기음</h3><p>RB7과 F2001 엔진음을 주제로 한 브라우저 데모와 주행 세션 프리뷰를 제작했습니다.</p></article>
+<h2>현장 운영과 주문 시스템</h2>
+<article><h3>SCSS · 군 복지시설 무인 체크인</h3><p>운영 매뉴얼과 간편한 배포 절차를 갖춰 현재도 운용 중입니다.</p><a href="index.html#project-scss">대표작 상세</a> · <a href="manual.html">운영 매뉴얼</a></article>
+<article><h3>호남대학교 축제 POS</h3><p>주점의 주문과 서빙을 연결하는 시스템을 공동 개발해 축제 현장 운영을 성공적으로 마쳤습니다.</p><a href="index.html#project-honam-pos">현장 운영과 평가</a></article>
+<article><h3>BDS · 보다수 키오스크와 모바일 픽업</h3><p>PC 키오스크와 아이폰 웹앱에서 접수한 주문을 한 주방 화면에서 처리하는 과제 발표용 프로젝트입니다.</p><a href="https://github.com/20233332choi/bds-kiosk">프로젝트 저장소</a></article>
+<article><h3>군 복지시설 한식당 예약 시스템</h3><p>군 복무 중 프런트 체크인 업무와 함께 한식당 예약 업무를 자동화했습니다.</p><a href="index.html#experience">개발 경험 보기</a></article></main></body></html>
